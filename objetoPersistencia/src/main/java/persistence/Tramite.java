@@ -32,7 +32,7 @@ import tramite.EstadoTramite;
  * @author Diego Alcantar Acosta
  */
 @Entity
-@Table(name="tramites")
+@Table(name="Tramites")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "tipo_tramite", discriminatorType = DiscriminatorType.STRING)
 public class Tramite implements Serializable {

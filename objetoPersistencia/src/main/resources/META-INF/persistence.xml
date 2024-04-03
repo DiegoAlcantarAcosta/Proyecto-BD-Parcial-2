@@ -5,6 +5,9 @@
     <class>persistence.Persona</class>
     <class>persistence.Tramite</class>
     <class>persistence.Vehiculo</class>
+    <class>persistence.Automovil</class>
+    <class>persistence.Placa</class>
+    <class>persistence.Licencia</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ModuloTramites?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
  * @author Diego Alcantar Acosta
  */
 @Entity
-@Table(name = "personas")
+@Table(name = "Personas")
 public class Persona implements Serializable {
 
     @Id
@@ -151,8 +151,6 @@ public class Persona implements Serializable {
     public void setTramites(List<Tramite> tramites) {
         this.tramites = tramites;
     }
-
-    
     
     @Override
     public String toString() {
