@@ -55,8 +55,6 @@ public class Tramite implements Serializable {
     @ManyToOne
     @JoinColumn(name="persona_id", nullable=false)
     private Persona persona;
-    
-    
 
     public Tramite() {
     }
