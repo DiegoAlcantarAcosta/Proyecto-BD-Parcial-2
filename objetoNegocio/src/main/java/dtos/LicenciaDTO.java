@@ -8,7 +8,8 @@ import java.util.Calendar;
 
 /**
  *
- * @author Diego
+ * @author Héctor Francisco Báez Luque
+ * @author Diego Alcantar Acosta
  */
 public class LicenciaDTO extends TramiteDTO{
     

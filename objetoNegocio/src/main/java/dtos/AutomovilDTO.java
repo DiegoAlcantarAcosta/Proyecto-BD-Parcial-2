@@ -10,7 +10,8 @@ import persistencia.Placa;
 
 /**
  *
- * @author Diego
+ * @author Héctor Francisco Báez Luque
+ * @author Diego Alcantar Acosta
  */
 public class AutomovilDTO {
     
