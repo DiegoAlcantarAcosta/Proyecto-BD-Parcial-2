@@ -9,22 +9,24 @@ import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import tramite.EstadoTramite;
 
 /**
- *
- * @author Héctor Francisco Báez Luque
- * @author Diego Alcantar Acosta
+ *@author Héctor Francisco Báez Luque
+ * @author Diego
  */
 @Entity
 @Table(name = "Licencias")
 @DiscriminatorValue("Licencia")
 public class Licencia extends Tramite implements Serializable {
 
-    @Column(name = "vigencia")
+     @Column(name = "vigencia")
     @Temporal(TemporalType.DATE)
     private Calendar vigencia;
 
@@ -61,4 +63,5 @@ public class Licencia extends Tramite implements Serializable {
     public String toString() {
         return "Licencia{" + "vigencia=" + vigencia + '}';
     }
+    
 }

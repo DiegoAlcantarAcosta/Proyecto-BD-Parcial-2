@@ -17,9 +17,8 @@ import javax.persistence.TemporalType;
 import tramite.EstadoTramite;
 
 /**
- *
- * @author Héctor Francisco Báez Luque
- * @author Diego Alcantar Acosta
+ *@author Héctor Francisco Báez Luque
+ * @author Diego
  */
 @Entity
 @Table(name = "Placas")
@@ -80,5 +79,4 @@ public class Placa extends Tramite implements Serializable {
     public String toString() {
         return "Placa{" + "fechaRecepcion=" + fechaRecepcion + ", numeroAlfanumerico=" + numeroAlfanumerico + ", vehiculo=" + vehiculo + '}';
     }
-    
 }

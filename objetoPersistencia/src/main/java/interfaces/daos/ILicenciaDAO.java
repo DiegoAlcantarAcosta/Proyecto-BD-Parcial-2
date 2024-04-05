@@ -4,7 +4,6 @@
  */
 package interfaces.daos;
 
-import dtos.LicenciaDTO;
 import java.util.Date;
 import java.util.List;
 import persistencia.Licencia;
@@ -18,7 +17,7 @@ import persistencia.Persona;
 public interface ILicenciaDAO {
     
     public boolean consultarLicencia(Persona persona);
-    public LicenciaDTO registrar(String rfc, int vigencia, float costo);
+    public Licencia registrar(String rfc, int vigencia, float costo);
     public boolean isLicenciaActiva(String rfc);
     public List<Licencia> getLicenciasPorRFC(String rfc);
     public List<Licencia> reporteLicencias(Date desde, Date hasta, String nombre);

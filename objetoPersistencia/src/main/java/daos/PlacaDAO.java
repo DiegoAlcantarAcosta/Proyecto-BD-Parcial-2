@@ -6,8 +6,6 @@ package daos;
 
 import conexionEM.Conexion;
 import conexionEM.IConexion;
-import dtos.PersonaDTO;
-import dtos.PlacaDTO;
 import interfaces.daos.IPlacaDAO;
 import java.util.Calendar;
 import java.util.Date;
@@ -35,7 +33,7 @@ public class PlacaDAO implements IPlacaDAO{
     }
     
     @Override
-    public PlacaDTO registrarPlaca(Vehiculo vehiculo, float costo, String claveNumerica, PersonaDTO persona) {
+    public Placa registrarPlaca(Vehiculo vehiculo, float costo, String claveNumerica, Persona persona) {
         EntityManager em = conexion.abrir();
         em.getTransaction().begin();
 
@@ -50,7 +48,7 @@ public class PlacaDAO implements IPlacaDAO{
             em.persist(placa);
             em.getTransaction().commit();
 
-            PlacaDTO placaDTO = new PlacaDTO();
+            Placa placaDTO = new Placa();
             placaDTO.setNumeroAlfanumerico(claveNumerica);
             placaDTO.setEstado(placa.getEstado());
             placaDTO.setFechaExpedicion(placa.getFechaExpedicion());

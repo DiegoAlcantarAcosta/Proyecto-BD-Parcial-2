@@ -4,17 +4,39 @@
  */
 package Interfaces;
 
+import controladores.controlador;
+import daos.PersonaDAO;
+import javax.swing.JOptionPane;
+import persistencia.Persona;
+
 /**
  *
  * @author Diego
  */
 public class licenciasForm2 extends javax.swing.JFrame {
+    PersonaDAO persona = new PersonaDAO();
+    controlador c = new controlador();
+    String x;
 
     /**
      * Creates new form menuForm
      */
-    public licenciasForm2() {
+    public licenciasForm2(String rfc) {
         initComponents();
+        x = rfc;
+        Persona datosPersona = persona.getPersona(x);
+        nombreTextField.setText(datosPersona.getNombre());
+        apellidoPaternoTextField.setText(datosPersona.getApellidoPaterno());
+        apellidoMaternoTextField.setText(datosPersona.getApellidoMaterno());
+        telefonoTextField.setText(datosPersona.getTelefono());
+        fechaNacimientoTextField.setText(datosPersona.getFechaNacimiento().toString());
+        rfcTextField.setText(datosPersona.getRfc());
+        if (datosPersona.isDiscapacidad()){
+            discapacidadTextField.setText("S");
+        } else {
+             discapacidadTextField.setText("N");
+        }
+        
     }
 
     /**
@@ -33,7 +55,7 @@ public class licenciasForm2 extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         dosRadioButton = new javax.swing.JRadioButton();
         unoRadioButton = new javax.swing.JRadioButton();
-        siguienteButton = new javax.swing.JButton();
+        pagarButton = new javax.swing.JButton();
         regresarButton = new javax.swing.JButton();
         tresRadioButton = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
@@ -95,6 +117,11 @@ public class licenciasForm2 extends javax.swing.JFrame {
         dosRadioButton.setBackground(new java.awt.Color(153, 153, 153));
         dosRadioButton.setForeground(new java.awt.Color(0, 0, 0));
         dosRadioButton.setText("2 AÑOS");
+        dosRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dosRadioButtonActionPerformed(evt);
+            }
+        });
 
         unoRadioButton.setBackground(new java.awt.Color(153, 153, 153));
         unoRadioButton.setForeground(new java.awt.Color(0, 0, 0));
@@ -105,17 +132,32 @@ public class licenciasForm2 extends javax.swing.JFrame {
             }
         });
 
-        siguienteButton.setBackground(new java.awt.Color(255, 255, 255));
-        siguienteButton.setForeground(new java.awt.Color(0, 0, 0));
-        siguienteButton.setText("Siguiente");
+        pagarButton.setBackground(new java.awt.Color(255, 255, 255));
+        pagarButton.setForeground(new java.awt.Color(0, 0, 0));
+        pagarButton.setText("Pagar");
+        pagarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pagarButtonActionPerformed(evt);
+            }
+        });
 
         regresarButton.setBackground(new java.awt.Color(255, 255, 255));
         regresarButton.setForeground(new java.awt.Color(0, 0, 0));
         regresarButton.setText("Regresar");
+        regresarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarButtonActionPerformed(evt);
+            }
+        });
 
         tresRadioButton.setBackground(new java.awt.Color(153, 153, 153));
         tresRadioButton.setForeground(new java.awt.Color(0, 0, 0));
         tresRadioButton.setText("3 AÑOS");
+        tresRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tresRadioButtonActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
@@ -240,7 +282,7 @@ public class licenciasForm2 extends javax.swing.JFrame {
                 .addGap(105, 105, 105)
                 .addComponent(regresarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(siguienteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pagarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(111, 111, 111))
         );
         jPanel1Layout.setVerticalGroup(
@@ -259,10 +301,11 @@ public class licenciasForm2 extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dosRadioButton)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
-                    .addComponent(apellidoPaternoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(dosRadioButton)
+                        .addComponent(apellidoPaternoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -291,7 +334,7 @@ public class licenciasForm2 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(regresarButton)
-                    .addComponent(siguienteButton))
+                    .addComponent(pagarButton))
                 .addGap(21, 21, 21))
         );
 
@@ -309,12 +352,65 @@ public class licenciasForm2 extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void unoRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unoRadioButtonActionPerformed
-        // TODO add your handling code here:
+        dosRadioButton.setSelected(false);
+        tresRadioButton.setSelected(false);
+        if (discapacidadTextField.getText().equalsIgnoreCase("S")) {
+            costoTextField.setText("$200");
+        } else if (discapacidadTextField.getText().equalsIgnoreCase("N")) {
+            costoTextField.setText("$600");
+        } else {
+            unoRadioButton.setSelected(false);
+        }
     }//GEN-LAST:event_unoRadioButtonActionPerformed
 
+    private void regresarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarButtonActionPerformed
+        c.licencias2ALicencia1();
+        dispose();
+    }//GEN-LAST:event_regresarButtonActionPerformed
+
+    private void pagarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagarButtonActionPerformed
+        if (unoRadioButton.isSelected()) {
+            c.licencias2AMenu();
+            dispose();
+        } else if (dosRadioButton.isSelected()) {
+            c.licencias2AMenu();
+            dispose();
+
+        } else if (tresRadioButton.isSelected()) {
+            c.licencias2AMenu();
+        } else {
+            JOptionPane.showMessageDialog(this, "Seleccione una opcion", "AVISO", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_pagarButtonActionPerformed
+
+    private void dosRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dosRadioButtonActionPerformed
+        unoRadioButton.setSelected(false);
+        tresRadioButton.setSelected(false);
+        if (discapacidadTextField.getText().equalsIgnoreCase("S")) {
+            costoTextField.setText("$500");
+        } else if (discapacidadTextField.getText().equalsIgnoreCase("N")) {
+            costoTextField.setText("$900");
+        } else {
+            dosRadioButton.setSelected(false);
+        }
+    }//GEN-LAST:event_dosRadioButtonActionPerformed
+
+    private void tresRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tresRadioButtonActionPerformed
+        unoRadioButton.setSelected(false);
+        dosRadioButton.setSelected(false);
+        if (discapacidadTextField.getText().equalsIgnoreCase("S")) {
+            costoTextField.setText("$700");
+        } else if (discapacidadTextField.getText().equalsIgnoreCase("N")) {
+            costoTextField.setText("$1,100");
+        } else {
+            tresRadioButton.setSelected(false);
+        }
+    }//GEN-LAST:event_tresRadioButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -339,9 +435,9 @@ public class licenciasForm2 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField nombreTextField;
+    private javax.swing.JButton pagarButton;
     private javax.swing.JButton regresarButton;
     private javax.swing.JTextField rfcTextField;
-    private javax.swing.JButton siguienteButton;
     private javax.swing.JTextField telefonoTextField;
     private javax.swing.JRadioButton tresRadioButton;
     private javax.swing.JRadioButton unoRadioButton;

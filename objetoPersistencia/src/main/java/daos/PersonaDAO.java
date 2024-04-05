@@ -6,7 +6,6 @@ package daos;
 
 import conexionEM.Conexion;
 import conexionEM.IConexion;
-import dtos.PersonaDTO;
 import interfaces.daos.IPersonaDAO;
 import java.time.LocalDate;
 import java.time.Period;
@@ -31,7 +30,7 @@ public class PersonaDAO implements IPersonaDAO{
     }
     
     @Override
-    public void registrar(PersonaDTO persona) {
+    public void registrar(Persona persona) {
         
         EntityManager em = conexion.abrir();
         em.getTransaction().begin();
@@ -77,7 +76,7 @@ public class PersonaDAO implements IPersonaDAO{
     }
 
     @Override
-    public PersonaDTO getPersona(String rfc) {
+    public Persona getPersona(String rfc) {
         EntityManager em = conexion.abrir();
         em.getTransaction().begin();
 
@@ -88,7 +87,7 @@ public class PersonaDAO implements IPersonaDAO{
             Persona personaBuscada = query.getSingleResult();
             em.getTransaction().commit();
 
-            PersonaDTO personaDTO = new PersonaDTO();
+            Persona personaDTO = new Persona();
             personaDTO.setRfc(personaBuscada.getRfc());
             personaDTO.setNombre(personaBuscada.getNombre());
             personaDTO.setApellidoPaterno(personaBuscada.getApellidoPaterno());

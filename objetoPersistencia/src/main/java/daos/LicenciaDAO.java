@@ -6,7 +6,6 @@ package daos;
 
 import conexionEM.Conexion;
 import conexionEM.IConexion;
-import dtos.LicenciaDTO;
 import interfaces.daos.ILicenciaDAO;
 import java.util.Calendar;
 import java.util.Date;
@@ -33,7 +32,7 @@ public class LicenciaDAO implements ILicenciaDAO{
     }
     
     @Override
-    public LicenciaDTO registrar(String rfc, int vigencia, float costo) {
+    public Licencia registrar(String rfc, int vigencia, float costo) {
         EntityManager em = conexion.abrir();
         em.getTransaction().begin();
 
@@ -52,7 +51,7 @@ public class LicenciaDAO implements ILicenciaDAO{
             em.persist(licencia);
             em.getTransaction().commit();
 
-            LicenciaDTO licenciaDTO = new LicenciaDTO();
+            Licencia licenciaDTO = new Licencia();
             licenciaDTO.setFechaExpedicion(licencia.getFechaExpedicion());
             licenciaDTO.setVigencia(licencia.getVigencia());
             licenciaDTO.setCosto(licencia.getCosto());

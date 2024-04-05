@@ -4,11 +4,18 @@
  */
 package Interfaces;
 
+import controladores.controlador;
+import javax.swing.JOptionPane;
+import moduloLicencias.TramitarLicenciaBO;
+
 /**
  *
  * @author Diego
  */
 public class licenciasForm extends javax.swing.JFrame {
+
+    controlador c = new controlador();
+    TramitarLicenciaBO licencia = new TramitarLicenciaBO();
 
     /**
      * Creates new form menuForm
@@ -84,10 +91,20 @@ public class licenciasForm extends javax.swing.JFrame {
         siguienteButton.setBackground(new java.awt.Color(255, 255, 255));
         siguienteButton.setForeground(new java.awt.Color(0, 0, 0));
         siguienteButton.setText("Siguiente");
+        siguienteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siguienteButtonActionPerformed(evt);
+            }
+        });
 
         regresarButton.setBackground(new java.awt.Color(255, 255, 255));
         regresarButton.setForeground(new java.awt.Color(0, 0, 0));
         regresarButton.setText("Regresar");
+        regresarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -146,8 +163,23 @@ public class licenciasForm extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void regresarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarButtonActionPerformed
+        c.licenciasAMenu();
+        dispose();
+    }//GEN-LAST:event_regresarButtonActionPerformed
+
+    private void siguienteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteButtonActionPerformed
+        if (licencia.isLicenciaActiva(rfcTextField.getText())) {
+            JOptionPane.showMessageDialog(this, "Tiene una licencia ya activa", "AVISO", JOptionPane.WARNING_MESSAGE);
+        } else {
+            c.licencia1ALicencia2(rfcTextField.getText());
+            dispose();
+        }
+
+    }//GEN-LAST:event_siguienteButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

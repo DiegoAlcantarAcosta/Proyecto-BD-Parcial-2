@@ -27,9 +27,8 @@ import javax.persistence.Transient;
 import tramite.EstadoTramite;
 
 /**
- *
- * @author Héctor Francisco Báez Luque
- * @author Diego Alcantar Acosta
+ *@author Héctor Francisco Báez Luque
+ * @author Diego
  */
 @Entity
 @Table(name="Tramites")
@@ -37,6 +36,7 @@ import tramite.EstadoTramite;
 @DiscriminatorColumn(name = "tipo_tramite", discriminatorType = DiscriminatorType.STRING)
 public class Tramite implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -115,5 +115,4 @@ public class Tramite implements Serializable {
     public String getDecriminatorValue() {
         return this.getClass().getAnnotation(DiscriminatorValue.class).value();
     }
-    
 }

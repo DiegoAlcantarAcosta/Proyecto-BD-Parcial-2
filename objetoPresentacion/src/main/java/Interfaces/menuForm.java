@@ -4,17 +4,21 @@
  */
 package Interfaces;
 
+import controladores.controlador;
+
 /**
  *
  * @author Diego
  */
 public class menuForm extends javax.swing.JFrame {
 
+    controlador c = new controlador();
     /**
      * Creates new form menuForm
      */
     public menuForm() {
         initComponents();
+        
     }
 
     /**
@@ -92,18 +96,38 @@ public class menuForm extends javax.swing.JFrame {
         licenciasButton.setBackground(new java.awt.Color(255, 255, 255));
         licenciasButton.setForeground(new java.awt.Color(0, 0, 0));
         licenciasButton.setText("Tramitar");
+        licenciasButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                licenciasButtonActionPerformed(evt);
+            }
+        });
 
         placasButton.setBackground(new java.awt.Color(255, 255, 255));
         placasButton.setForeground(new java.awt.Color(0, 0, 0));
         placasButton.setText("Tramitar");
+        placasButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                placasButtonActionPerformed(evt);
+            }
+        });
 
         reportesButton.setBackground(new java.awt.Color(255, 255, 255));
         reportesButton.setForeground(new java.awt.Color(0, 0, 0));
         reportesButton.setText("Reportar");
+        reportesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reportesButtonActionPerformed(evt);
+            }
+        });
 
         consultarButton.setBackground(new java.awt.Color(255, 255, 255));
         consultarButton.setForeground(new java.awt.Color(0, 0, 0));
         consultarButton.setText("Reportar");
+        consultarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -176,7 +200,26 @@ public class menuForm extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void licenciasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_licenciasButtonActionPerformed
+       c.menuALicencia();
+       dispose();
+    }//GEN-LAST:event_licenciasButtonActionPerformed
+
+    private void placasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placasButtonActionPerformed
+       c.menuAPlacas();
+        dispose();
+    }//GEN-LAST:event_placasButtonActionPerformed
+
+    private void consultarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_consultarButtonActionPerformed
+
+    private void reportesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportesButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_reportesButtonActionPerformed
 
 
 

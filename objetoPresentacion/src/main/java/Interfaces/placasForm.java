@@ -4,6 +4,8 @@
  */
 package Interfaces;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Diego
@@ -33,8 +35,8 @@ public class placasForm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         rfcTextField = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        autoUsadoRadioButton = new javax.swing.JRadioButton();
+        autoNuevoRadioButton = new javax.swing.JRadioButton();
         siguienteButton = new javax.swing.JButton();
         regresarButton = new javax.swing.JButton();
 
@@ -83,26 +85,41 @@ public class placasForm extends javax.swing.JFrame {
         rfcTextField.setBackground(new java.awt.Color(255, 255, 255));
         rfcTextField.setForeground(new java.awt.Color(0, 0, 0));
 
-        jRadioButton1.setBackground(new java.awt.Color(153, 153, 153));
-        jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton1.setText("Automovil Usado");
-
-        jRadioButton2.setBackground(new java.awt.Color(153, 153, 153));
-        jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jRadioButton2.setText("Automovil Nuevo");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        autoUsadoRadioButton.setBackground(new java.awt.Color(153, 153, 153));
+        autoUsadoRadioButton.setForeground(new java.awt.Color(0, 0, 0));
+        autoUsadoRadioButton.setText("Automovil Usado");
+        autoUsadoRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                autoUsadoRadioButtonActionPerformed(evt);
+            }
+        });
+
+        autoNuevoRadioButton.setBackground(new java.awt.Color(153, 153, 153));
+        autoNuevoRadioButton.setForeground(new java.awt.Color(0, 0, 0));
+        autoNuevoRadioButton.setText("Automovil Nuevo");
+        autoNuevoRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoNuevoRadioButtonActionPerformed(evt);
             }
         });
 
         siguienteButton.setBackground(new java.awt.Color(255, 255, 255));
         siguienteButton.setForeground(new java.awt.Color(0, 0, 0));
         siguienteButton.setText("Siguiente");
+        siguienteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siguienteButtonActionPerformed(evt);
+            }
+        });
 
         regresarButton.setBackground(new java.awt.Color(255, 255, 255));
         regresarButton.setForeground(new java.awt.Color(0, 0, 0));
         regresarButton.setText("Regresar");
+        regresarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,11 +140,11 @@ public class placasForm extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jRadioButton2)
+                            .addComponent(autoNuevoRadioButton)
                             .addComponent(regresarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(103, 103, 103)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton1)
+                            .addComponent(autoUsadoRadioButton)
                             .addComponent(siguienteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(154, 154, 154))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -148,8 +165,8 @@ public class placasForm extends javax.swing.JFrame {
                     .addComponent(rfcTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton1))
+                    .addComponent(autoNuevoRadioButton)
+                    .addComponent(autoUsadoRadioButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(siguienteButton)
@@ -169,23 +186,53 @@ public class placasForm extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    private void autoNuevoRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoNuevoRadioButtonActionPerformed
+        if (autoNuevoRadioButton.isSelected()) {
+            autoUsadoRadioButton.setSelected(false);
+        }
+    }//GEN-LAST:event_autoNuevoRadioButtonActionPerformed
+
+    private void regresarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarButtonActionPerformed
+        menuForm m = new menuForm();
+        m.show();
+        dispose();
+    }//GEN-LAST:event_regresarButtonActionPerformed
+
+    private void siguienteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteButtonActionPerformed
+        if (autoNuevoRadioButton.isSelected()) {
+            placasAutoNuevo1 a = new placasAutoNuevo1();
+            a.show();
+            dispose();
+        } else if (autoUsadoRadioButton.isSelected()){
+            placasAutoUsadoForm a = new placasAutoUsadoForm();
+            a.show();
+            dispose();
+        } else {
+           JOptionPane.showMessageDialog(this, "Seleccione una opcion", "AVISO", JOptionPane.WARNING_MESSAGE);
+      
+        }
+    }//GEN-LAST:event_siguienteButtonActionPerformed
+
+    private void autoUsadoRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoUsadoRadioButtonActionPerformed
+         if (autoUsadoRadioButton.isSelected()) {
+            autoNuevoRadioButton.setSelected(false);
+        }
+    }//GEN-LAST:event_autoUsadoRadioButtonActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton autoNuevoRadioButton;
+    private javax.swing.JRadioButton autoUsadoRadioButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JButton regresarButton;
     private javax.swing.JTextField rfcTextField;
     private javax.swing.JButton siguienteButton;

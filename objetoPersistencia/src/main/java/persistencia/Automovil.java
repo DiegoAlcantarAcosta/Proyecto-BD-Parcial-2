@@ -8,19 +8,21 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- *
- * @author Héctor Francisco Báez Luque
- * @author Diego Alcantar Acosta
+ *@author Héctor Francisco Báez Luque
+ * @author Diego
  */
 @Entity
 @Table(name = "Automoviles")
 @DiscriminatorValue("Automovil")
 public class Automovil extends Vehiculo implements Serializable {
 
-    @Column(name = "num_serie", nullable = false, length = 17)
+     @Column(name = "num_serie", nullable = false, length = 17)
     private String numSerie;
 
     @Column(name = "marca", nullable = false, length = 50)
@@ -94,5 +96,6 @@ public class Automovil extends Vehiculo implements Serializable {
     public void setColor(String color) {
         this.color = color;
     }
+    
     
 }

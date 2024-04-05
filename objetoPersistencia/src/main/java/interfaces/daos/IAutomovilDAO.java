@@ -4,7 +4,6 @@
  */
 package interfaces.daos;
 
-import dtos.AutomovilDTO;
 import persistencia.Automovil;
 import persistencia.Persona;
 
@@ -15,10 +14,10 @@ import persistencia.Persona;
  */
 public interface IAutomovilDAO{
     
-    public AutomovilDTO registrar(String numSerie, String marca, String linea, String color, int modelo, Persona persona);
+    public Automovil registrar(String numSerie, String marca, String linea, String color, int modelo, Persona persona);
     public boolean existeAutomovil(String numSerie);
-    public AutomovilDTO obtener(String numSerie, String rfc);
+    public Automovil obtener(String numSerie, String rfc);
     public Automovil obtenerPorNumeroSerie(String numSerie);
-    public AutomovilDTO obtenerPorPlacas(String claveNumerica, String rfc);
+    public Automovil obtenerPorPlacas(String claveNumerica, String rfc);
     
 }

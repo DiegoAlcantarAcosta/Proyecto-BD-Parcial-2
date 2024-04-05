@@ -19,14 +19,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *
- * @author Héctor Francisco Báez Luque
- * @author Diego Alcantar Acosta
+ *@author Héctor Francisco Báez Luque
+ * @author Diego
  */
 @Entity
 @Table(name = "Personas")
 public class Persona implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -165,5 +165,4 @@ public class Persona implements Serializable {
     public String toString() {
         return "Persona{" + "id=" + id + ", rfc=" + rfc + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", telefono=" + telefono + ", fechaNacimiento=" + fechaNacimiento + ", discapacidad=" + discapacidad + ", automoviles=" + vehiculos + ", tramites=" + tramites + '}';
     }
-    
 }

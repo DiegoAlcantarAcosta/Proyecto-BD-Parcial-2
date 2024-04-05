@@ -4,10 +4,9 @@
  */
 package interfaces.daos;
 
-import dtos.PersonaDTO;
-import dtos.PlacaDTO;
 import java.util.Date;
 import java.util.List;
+import persistencia.Persona;
 import persistencia.Placa;
 import persistencia.Vehiculo;
 
@@ -18,7 +17,7 @@ import persistencia.Vehiculo;
  */
 public interface IPlacaDAO {
     
-    public PlacaDTO registrarPlaca(Vehiculo vehiculo, float costo, String claveNumerica, PersonaDTO persona);
+    public Placa registrarPlaca(Vehiculo vehiculo, float costo, String claveNumerica, Persona persona);
     public Placa getPlacaActiva(Vehiculo vehiculo);
     public void desactivarPlaca(Vehiculo vehiculo);
     public List<Placa> getPlacasPorRFC(String rfc);

@@ -6,7 +6,6 @@ package daos;
 
 import conexionEM.Conexion;
 import conexionEM.IConexion;
-import dtos.AutomovilDTO;
 import interfaces.daos.IAutomovilDAO;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -29,7 +28,7 @@ public class AutomovilDAO implements IAutomovilDAO{
     
     
     @Override
-    public AutomovilDTO registrar(String numSerie, String marca, String linea, String color, int modelo, Persona persona) {
+    public Automovil registrar(String numSerie, String marca, String linea, String color, int modelo, Persona persona) {
         EntityManager entityManager = conexion.abrir();
         entityManager.getTransaction().begin();
 
@@ -39,7 +38,7 @@ public class AutomovilDAO implements IAutomovilDAO{
 
             entityManager.getTransaction().commit();
 
-            AutomovilDTO automovilDTO = new AutomovilDTO(automovil.getNumSerie(), automovil.getMarca(), automovil.getLinea(), automovil.getColor(), automovil.getModelo());
+            Automovil automovilDTO = new Automovil(automovil.getNumSerie(), automovil.getMarca(), automovil.getLinea(), automovil.getColor(), automovil.getModelo());
             return automovilDTO;
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
@@ -73,7 +72,7 @@ public class AutomovilDAO implements IAutomovilDAO{
     }
 
     @Override
-    public AutomovilDTO obtener(String numSerie, String rfc) {
+    public Automovil obtener(String numSerie, String rfc) {
         EntityManager entityManager = conexion.abrir();
         entityManager.getTransaction().begin();
 
@@ -84,9 +83,9 @@ public class AutomovilDAO implements IAutomovilDAO{
             query.setParameter("rfc", rfc);
             Automovil automovilBuscado = query.getSingleResult();
             entityManager.getTransaction().commit();
-            AutomovilDTO automovilDTO = new AutomovilDTO();
+            Automovil automovilDTO = new Automovil();
 
-            automovilDTO.setNum_serie(automovilBuscado.getNumSerie());
+            automovilDTO.setNumSerie(automovilBuscado.getNumSerie());
             automovilDTO.setMarca(automovilBuscado.getMarca());
             automovilDTO.setModelo(automovilBuscado.getModelo());
             automovilDTO.setColor(automovilBuscado.getColor());
@@ -125,7 +124,7 @@ public class AutomovilDAO implements IAutomovilDAO{
     }
 
     @Override
-    public AutomovilDTO obtenerPorPlacas(String claveNumerica, String rfc) {
+    public Automovil obtenerPorPlacas(String claveNumerica, String rfc) {
         EntityManager em = conexion.abrir();
         em.getTransaction().begin();
         
@@ -137,8 +136,8 @@ public class AutomovilDAO implements IAutomovilDAO{
             List<Automovil> resultados = query.getResultList();
             if (!resultados.isEmpty()) {
                 Automovil automovil = resultados.get(0);
-                AutomovilDTO encontrado = new AutomovilDTO();
-                encontrado.setNum_serie(automovil.getNumSerie());
+                Automovil encontrado = new Automovil();
+                encontrado.setNumSerie(automovil.getNumSerie());
                 encontrado.setMarca(automovil.getMarca());
                 encontrado.setModelo(automovil.getModelo());
                 encontrado.setLinea(automovil.getLinea());

@@ -4,7 +4,6 @@
  */
 package interfaces.daos;
 
-import dtos.PersonaDTO;
 import java.util.Date;
 import java.util.List;
 import persistencia.Persona;
@@ -16,9 +15,9 @@ import persistencia.Persona;
  */
 public interface IPersonaDAO {
     
-    public void registrar(PersonaDTO persona);
+    public void registrar(Persona persona);
     public boolean personaRegistrada(String rfc);
-    public PersonaDTO getPersona(String rfc);
+    public Persona getPersona(String rfc);
     public Persona consultarPersona(String rfc);
     public boolean esMayorDeEdad(String rfc);
     public List<Persona> buscarPersonaPorNombreSimilar(String nombre);
