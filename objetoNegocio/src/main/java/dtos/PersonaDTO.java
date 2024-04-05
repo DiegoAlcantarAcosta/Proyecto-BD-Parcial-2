@@ -2,16 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DTO;
+package dtos;
 
 import java.util.Calendar;
-import java.util.List;
-import persistence.Tramite;
-import persistence.Vehiculo;
 
 /**
  *
- * @author Diego
+ * @author Héctor Francisco Báez Luque
+ * @author Diego Alcantar Acosta
  */
 public class PersonaDTO {
     private String rfc;
@@ -21,10 +19,11 @@ public class PersonaDTO {
     private String telefono;
     private Calendar fechaNacimiento;
     private boolean discapacidad;
-    private List<Vehiculo> vehiculos;
-    private List<Tramite> tramites;
 
-    public PersonaDTO(String rfc, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, Calendar fechaNacimiento, boolean discapacidad, List<Vehiculo> vehiculos, List<Tramite> tramites) {
+    public PersonaDTO() {
+    }
+    
+    public PersonaDTO(String rfc, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, Calendar fechaNacimiento, boolean discapacidad) {
         this.rfc = rfc;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -32,8 +31,6 @@ public class PersonaDTO {
         this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
         this.discapacidad = discapacidad;
-        this.vehiculos = vehiculos;
-        this.tramites = tramites;
     }
 
     public String getRfc() {
@@ -92,25 +89,9 @@ public class PersonaDTO {
         this.discapacidad = discapacidad;
     }
 
-    public List<Vehiculo> getVehiculos() {
-        return vehiculos;
-    }
-
-    public void setVehiculos(List<Vehiculo> vehiculos) {
-        this.vehiculos = vehiculos;
-    }
-
-    public List<Tramite> getTramites() {
-        return tramites;
-    }
-
-    public void setTramites(List<Tramite> tramites) {
-        this.tramites = tramites;
-    }
-
     @Override
     public String toString() {
-        return "PersonaDTO{" + "rfc=" + rfc + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", telefono=" + telefono + ", fechaNacimiento=" + fechaNacimiento + ", discapacidad=" + discapacidad + ", vehiculos=" + vehiculos + ", tramites=" + tramites + '}';
+        return "PersonaDTO{" + "rfc=" + rfc + ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + ", apellidoMaterno=" + apellidoMaterno + ", telefono=" + telefono + ", fechaNacimiento=" + fechaNacimiento + ", discapacidad=" + discapacidad + '}';
     }
     
     

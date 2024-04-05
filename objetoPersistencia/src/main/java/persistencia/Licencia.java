@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package persistence;
+package persistencia;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -48,7 +48,7 @@ public class Licencia extends Tramite implements Serializable {
         this.vigencia = vigencia;
     }
     
-    public EstadoTramite determinarEstado() {
+    public EstadoTramite estadoLicencia() {
         Calendar fechaActual = Calendar.getInstance();
         if (getVigencia().after(fechaActual)) {
             return EstadoTramite.ACTIVA;

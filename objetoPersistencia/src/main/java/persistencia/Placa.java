@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package persistence;
+package persistencia;
 
 import java.io.Serializable;
 import java.util.Calendar;
@@ -34,19 +34,19 @@ public class Placa extends Tramite implements Serializable {
     private String numeroAlfanumerico;
     
     @ManyToOne
-    @JoinColumn(name="automovil_id", nullable=false)
-    private Automovil automovil;
+    @JoinColumn(name="vehiculo_id", nullable=false)
+    private Vehiculo vehiculo;
 
-    public Placa(Calendar fechaRecepcion, String numeroAlfanumerico, Automovil automovil) {
+    public Placa(Calendar fechaRecepcion, String numeroAlfanumerico, Vehiculo vehiculo) {
         this.fechaRecepcion = fechaRecepcion;
         this.numeroAlfanumerico = numeroAlfanumerico;
-        this.automovil = automovil;
+        this.vehiculo = vehiculo;
     }
 
-    public Placa(String numeroAlfanumerico, Automovil automovil, float costo, EstadoTramite estado, Calendar fechaExpedicion, Persona persona) {
+    public Placa(String numeroAlfanumerico, Vehiculo vehiculo, float costo, EstadoTramite estado, Calendar fechaExpedicion, Persona persona) {
         super(costo, estado, fechaExpedicion, persona);
         this.numeroAlfanumerico = numeroAlfanumerico;
-        this.automovil = automovil;
+        this.vehiculo = vehiculo;
     }
 
     public Placa() {
@@ -68,17 +68,17 @@ public class Placa extends Tramite implements Serializable {
         this.numeroAlfanumerico = numeroAlfanumerico;
     }
 
-    public Automovil getAutomovil() {
-        return automovil;
+    public Vehiculo getVehiculo() {
+        return vehiculo;
     }
 
-    public void setAutomovil(Automovil automovil) {
-        this.automovil = automovil;
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
     @Override
     public String toString() {
-        return "Placa{" + "fechaRecepcion=" + fechaRecepcion + ", numeroAlfanumerico=" + numeroAlfanumerico + ", automovil=" + automovil + '}';
+        return "Placa{" + "fechaRecepcion=" + fechaRecepcion + ", numeroAlfanumerico=" + numeroAlfanumerico + ", vehiculo=" + vehiculo + '}';
     }
     
 }

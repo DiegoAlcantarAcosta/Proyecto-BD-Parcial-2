@@ -2,30 +2,31 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DTO;
+package dtos;
 
 import java.util.List;
-import persistence.Persona;
-import persistence.Placa;
+import persistencia.Persona;
+import persistencia.Placa;
 
 /**
  *
  * @author Diego
  */
 public class AutomovilDTO {
+    
     private String num_serie, marca, linea, color;
     private Integer modelo;
     private Persona persona;
-    private List<Placa> placas;
 
-    public AutomovilDTO(String num_serie, String marca, String linea, String color, Integer modelo, Persona persona, List<Placa> placas) {
+    public AutomovilDTO() {
+    }
+    
+    public AutomovilDTO(String num_serie, String marca, String linea, String color, Integer modelo) {
         this.num_serie = num_serie;
         this.marca = marca;
         this.linea = linea;
         this.color = color;
         this.modelo = modelo;
-        this.persona = persona;
-        this.placas = placas;
     }
 
     public String getNum_serie() {
@@ -76,16 +77,8 @@ public class AutomovilDTO {
         this.persona = persona;
     }
 
-    public List<Placa> getPlacas() {
-        return placas;
-    }
-
-    public void setPlacas(List<Placa> placas) {
-        this.placas = placas;
-    }
-
     @Override
     public String toString() {
-        return "AutomovilDTO{" + "num_serie=" + num_serie + ", marca=" + marca + ", linea=" + linea + ", color=" + color + ", modelo=" + modelo + ", persona=" + persona + ", placas=" + placas + '}';
+        return "AutomovilDTO{" + "num_serie=" + num_serie + ", marca=" + marca + ", linea=" + linea + ", color=" + color + ", modelo=" + modelo + ", persona=" + persona + ", placas=" + '}';
     }
 }
