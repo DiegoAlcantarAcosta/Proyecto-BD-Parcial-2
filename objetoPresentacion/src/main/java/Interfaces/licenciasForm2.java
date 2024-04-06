@@ -6,6 +6,8 @@ package Interfaces;
 
 import controladores.controlador;
 import daos.PersonaDAO;
+import encriptador.EncriptadorAES256;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import persistencia.Persona;
 
@@ -15,21 +17,26 @@ import persistencia.Persona;
  */
 public class licenciasForm2 extends javax.swing.JFrame {
     PersonaDAO persona = new PersonaDAO();
+    EncriptadorAES256 e = new EncriptadorAES256();
     controlador c = new controlador();
     String x;
 
     /**
      * Creates new form menuForm
      */
-    public licenciasForm2(String rfc) {
+    public licenciasForm2(String rfc) throws Exception {
         initComponents();
         x = rfc;
         Persona datosPersona = persona.getPersona(x);
         nombreTextField.setText(datosPersona.getNombre());
         apellidoPaternoTextField.setText(datosPersona.getApellidoPaterno());
         apellidoMaternoTextField.setText(datosPersona.getApellidoMaterno());
-        telefonoTextField.setText(datosPersona.getTelefono());
-        fechaNacimientoTextField.setText(datosPersona.getFechaNacimiento().toString());
+        telefonoTextField.setText(e.desencriptar(datosPersona.getTelefono(), 1));
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        
+        String dateString = sdf.format(datosPersona.getFechaNacimiento().getTime());
+        fechaNacimientoTextField.setText(dateString);
         rfcTextField.setText(datosPersona.getRfc());
         if (datosPersona.isDiscapacidad()){
             discapacidadTextField.setText("S");
@@ -359,9 +366,9 @@ public class licenciasForm2 extends javax.swing.JFrame {
         dosRadioButton.setSelected(false);
         tresRadioButton.setSelected(false);
         if (discapacidadTextField.getText().equalsIgnoreCase("S")) {
-            costoTextField.setText("$200");
+            costoTextField.setText("200");
         } else if (discapacidadTextField.getText().equalsIgnoreCase("N")) {
-            costoTextField.setText("$600");
+            costoTextField.setText("600");
         } else {
             unoRadioButton.setSelected(false);
         }
@@ -374,14 +381,14 @@ public class licenciasForm2 extends javax.swing.JFrame {
 
     private void pagarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagarButtonActionPerformed
         if (unoRadioButton.isSelected()) {
-            c.licencias2AMenu();
+            c.licencias2AMenu(rfcTextField.getText(), 1, Integer.parseInt(costoTextField.getText()));
             dispose();
         } else if (dosRadioButton.isSelected()) {
-            c.licencias2AMenu();
+            c.licencias2AMenu(rfcTextField.getText(), 2, Integer.parseInt(costoTextField.getText()));
             dispose();
-
         } else if (tresRadioButton.isSelected()) {
-            c.licencias2AMenu();
+            c.licencias2AMenu(rfcTextField.getText(), 3, Integer.parseInt(costoTextField.getText()));
+            dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Seleccione una opcion", "AVISO", JOptionPane.WARNING_MESSAGE);
         }
@@ -392,9 +399,9 @@ public class licenciasForm2 extends javax.swing.JFrame {
         unoRadioButton.setSelected(false);
         tresRadioButton.setSelected(false);
         if (discapacidadTextField.getText().equalsIgnoreCase("S")) {
-            costoTextField.setText("$500");
+            costoTextField.setText("500");
         } else if (discapacidadTextField.getText().equalsIgnoreCase("N")) {
-            costoTextField.setText("$900");
+            costoTextField.setText("900");
         } else {
             dosRadioButton.setSelected(false);
         }
@@ -404,9 +411,9 @@ public class licenciasForm2 extends javax.swing.JFrame {
         unoRadioButton.setSelected(false);
         dosRadioButton.setSelected(false);
         if (discapacidadTextField.getText().equalsIgnoreCase("S")) {
-            costoTextField.setText("$700");
+            costoTextField.setText("700");
         } else if (discapacidadTextField.getText().equalsIgnoreCase("N")) {
-            costoTextField.setText("$1,100");
+            costoTextField.setText("1100");
         } else {
             tresRadioButton.setSelected(false);
         }

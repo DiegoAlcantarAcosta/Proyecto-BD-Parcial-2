@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 import persistencia.Licencia;
@@ -23,14 +24,14 @@ import tramite.EstadoTramite;
  * @author Héctor Francisco Báez Luque
  * @author Diego Alcantar Acosta
  */
-public class LicenciaDAO implements ILicenciaDAO{
+public class LicenciaDAO implements ILicenciaDAO {
 
     private final IConexion conexion;
 
     public LicenciaDAO() {
         conexion = new Conexion();
     }
-    
+
     @Override
     public Licencia registrar(String rfc, int vigencia, float costo) {
         EntityManager em = conexion.abrir();
@@ -46,8 +47,8 @@ public class LicenciaDAO implements ILicenciaDAO{
 
             PersonaDAO personaObtenida = new PersonaDAO();
             Persona persona = personaObtenida.consultarPersona(rfc);
-            
-            Licencia licencia = new Licencia(fechaVigencia, costo, EstadoTramite.ACTIVA, fechaActual, persona);
+
+            Licencia licencia = new Licencia(fechaVigencia, costo, "ACTIVA", fechaActual, persona);
             em.persist(licencia);
             em.getTransaction().commit();
 
@@ -66,23 +67,23 @@ public class LicenciaDAO implements ILicenciaDAO{
             em.close();
         }
     }
-    
+
     @Override
     public boolean consultarLicencia(Persona persona) {
-        
+
         List<Tramite> tramites = persona.getTramites();
 
         for (Tramite tramite : tramites) {
             if (tramite instanceof Licencia) {
                 Licencia licencia = (Licencia) tramite;
-                EstadoTramite estado = licencia.estadoLicencia();
-                if (estado == EstadoTramite.ACTIVA) {
+                String estado = licencia.estadoLicencia();
+                if (estado.equalsIgnoreCase("ACTIVA")) {
                     return true;
                 }
             }
         }
         return false;
-        
+
     }
 
     @Override
@@ -94,10 +95,17 @@ public class LicenciaDAO implements ILicenciaDAO{
             String sentencia = "SELECT l FROM Licencia l WHERE l.persona.rfc = :rfc "
                     + "AND l.estado = :estado AND l.vigencia >= :fechaActual";
             TypedQuery<Licencia> query = em.createQuery(sentencia, Licencia.class);
-            query.setParameter("rfc", rfc); 
-            query.setParameter("estado", EstadoTramite.ACTIVA);
+            query.setParameter("rfc", rfc);
+            query.setParameter("estado", "ACTIVA");
             query.setParameter("fechaActual", Calendar.getInstance(), TemporalType.DATE);
-            Licencia licencia = query.getSingleResult();
+
+            Licencia licencia = null;
+            try {
+                licencia = query.getSingleResult();
+            } catch (NoResultException e) {
+                // No se encontraron resultados, por lo que la licencia no está activa
+            }
+
             em.getTransaction().commit();
             return licencia != null;
         } catch (Exception e) {
@@ -129,7 +137,7 @@ public class LicenciaDAO implements ILicenciaDAO{
         TypedQuery<Licencia> query;
 
         try {
-            String sentencia = "SELECT l FROM Licencia l WHERE 1 = 1"; 
+            String sentencia = "SELECT l FROM Licencia l WHERE 1 = 1";
 
             if (desde != null && hasta != null) {
                 sentencia += " AND l.fechaExpedicion BETWEEN :desde AND :hasta";
@@ -155,7 +163,5 @@ public class LicenciaDAO implements ILicenciaDAO{
             em.close();
         }
     }
-    
-    
-    
+
 }

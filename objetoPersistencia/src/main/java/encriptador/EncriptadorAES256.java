@@ -4,48 +4,44 @@
  */
 package encriptador;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
-
 /**
  *
  * @author Héctor Francisco Báez Luque
  * @author Diego Alcantar Acosta
  */
-public class EncriptadorAES256 implements IEncriptadorAES256{
-    
+public class EncriptadorAES256 implements IEncriptadorAES256 {
+
     @Override
-    public String encriptar(String textoOriginal) throws Exception {
-        KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-        keyGen.init(256);
-        SecretKey claveSecreta = keyGen.generateKey();
-
-        Cipher cifrador = Cipher.getInstance("AES/CBC/PKCS5Padding");
-        cifrador.init(Cipher.ENCRYPT_MODE, claveSecreta);
-
-        byte[] textoEnBytes = textoOriginal.getBytes(StandardCharsets.UTF_8);
-        byte[] textoEncriptadoBytes = cifrador.doFinal(textoEnBytes);
-
-        return Base64.getEncoder().encodeToString(textoEncriptadoBytes);
+    public String encriptar(String text, int shift) {
+        StringBuilder encryptedText = new StringBuilder();
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            if (Character.isLetter(c)) {
+                char shifted = (char) (c + shift);
+                if (Character.isLowerCase(c)) {
+                    if (shifted > 'z') {
+                        shifted -= 26;
+                    } else if (shifted < 'a') {
+                        shifted += 26;
+                    }
+                } else if (Character.isUpperCase(c)) {
+                    if (shifted > 'Z') {
+                        shifted -= 26;
+                    } else if (shifted < 'A') {
+                        shifted += 26;
+                    }
+                }
+                encryptedText.append(shifted);
+            } else {
+                encryptedText.append(c);
+            }
+        }
+        return encryptedText.toString();
     }
 
     @Override
-    public String desencriptar(String textoEncriptado) throws Exception {
-        byte[] textoEncriptadoBytes = Base64.getDecoder().decode(textoEncriptado);
-
-        KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-        keyGen.init(256);
-        SecretKey claveSecreta = keyGen.generateKey();
-
-        Cipher cifrador = Cipher.getInstance("AES/CBC/PKCS5Padding");
-        cifrador.init(Cipher.DECRYPT_MODE, claveSecreta);
-
-        byte[] textoDesencriptadoBytes = cifrador.doFinal(textoEncriptadoBytes);
-
-        return new String(textoDesencriptadoBytes, StandardCharsets.UTF_8);
+     public String desencriptar(String encryptedText, int shift) {
+        return encriptar(encryptedText, -shift);
     }
-    
+
 }

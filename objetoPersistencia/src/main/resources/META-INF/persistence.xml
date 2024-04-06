@@ -4,10 +4,10 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>persistencia.Automovil</class>
     <class>persistencia.Licencia</class>
-    <class>persistencia.Persona</class>
     <class>persistencia.Placa</class>
     <class>persistencia.Tramite</class>
     <class>persistencia.Vehiculo</class>
+    <class>persistencia.Persona</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ModuloTramites?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC  "/>
       <property name="javax.persistence.jdbc.user" value="root"/>

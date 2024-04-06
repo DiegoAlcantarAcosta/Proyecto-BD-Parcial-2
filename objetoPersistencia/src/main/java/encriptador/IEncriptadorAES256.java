@@ -11,7 +11,6 @@ package encriptador;
  */
 public interface IEncriptadorAES256 {
     
-    public String encriptar(String textoOriginal) throws Exception;
-    public String desencriptar(String textoEncriptado) throws Exception;
-    
+    public String encriptar(String text, int shift);
+    public String desencriptar(String encryptedText, int shift);
 }

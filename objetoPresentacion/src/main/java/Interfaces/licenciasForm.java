@@ -5,6 +5,8 @@
 package Interfaces;
 
 import controladores.controlador;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import moduloLicencias.TramitarLicenciaBO;
 
@@ -175,10 +177,13 @@ public class licenciasForm extends javax.swing.JFrame {
         if (licencia.isLicenciaActiva(rfcTextField.getText())) {
             JOptionPane.showMessageDialog(this, "Tiene una licencia ya activa", "AVISO", JOptionPane.WARNING_MESSAGE);
         } else {
-            c.licencia1ALicencia2(rfcTextField.getText());
+            try {
+                c.licencia1ALicencia2(rfcTextField.getText());
+            } catch (Exception ex) {
+                Logger.getLogger(licenciasForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
             dispose();
         }
-
     }//GEN-LAST:event_siguienteButtonActionPerformed
 
 

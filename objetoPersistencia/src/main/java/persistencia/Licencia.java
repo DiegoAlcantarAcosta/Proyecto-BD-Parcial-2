@@ -9,13 +9,9 @@ import java.util.Calendar;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import tramite.EstadoTramite;
 
 /**
  *@author Héctor Francisco Báez Luque
@@ -34,7 +30,7 @@ public class Licencia extends Tramite implements Serializable {
         this.vigencia = vigencia;
     }
 
-    public Licencia(Calendar vigencia, float costo, EstadoTramite estado, Calendar fechaExpedicion, Persona persona) {
+    public Licencia(Calendar vigencia, float costo, String estado, Calendar fechaExpedicion, Persona persona) {
         super(costo, estado, fechaExpedicion, persona);
         this.vigencia = vigencia;
     }
@@ -50,12 +46,12 @@ public class Licencia extends Tramite implements Serializable {
         this.vigencia = vigencia;
     }
     
-    public EstadoTramite estadoLicencia() {
+    public String estadoLicencia() {
         Calendar fechaActual = Calendar.getInstance();
         if (getVigencia().after(fechaActual)) {
-            return EstadoTramite.ACTIVA;
+            return "ACTIVA";
         } else {
-            return EstadoTramite.VENCIDA;
+            return "VENCIDA";
         }
     }
 

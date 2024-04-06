@@ -26,12 +26,11 @@ import javax.persistence.TemporalType;
 @Table(name = "Personas")
 public class Persona implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name = "rfc", nullable=false, length=13)
+    @Column(name = "rfc", nullable=false, length = 20)
     private String rfc;
     
     @Column(name = "nombre", length=50)
@@ -43,7 +42,7 @@ public class Persona implements Serializable {
     @Column(name = "apellid_materno", length=50)
     private String apellidoMaterno;
     
-    @Column(name = "telefono", length=10, nullable=false)
+    @Column(name = "telefono", nullable=false)
     private String telefono;
     
     @Column(name = "fecha_nacimiento")

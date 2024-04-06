@@ -8,12 +8,14 @@ import Interfaces.licenciasForm;
 import Interfaces.licenciasForm2;
 import Interfaces.menuForm;
 import Interfaces.placasForm;
+import daos.LicenciaDAO;
 
 /**
  *
  * @author Diego
  */
 public class controlador {
+    LicenciaDAO licencias = new LicenciaDAO();
     
     public void menuALicencia (){
         licenciasForm a = new licenciasForm();
@@ -25,18 +27,20 @@ public class controlador {
        a.show();
     }
     
-    public void licencia1ALicencia2 (String rfc){
+    public void licencia1ALicencia2 (String rfc) throws Exception{
         licenciasForm2 a = new licenciasForm2(rfc);
         a.show();
     }
     
     public void licenciasAMenu (){
         menuForm m = new menuForm();
+       
         m.show();
     }
     
-     public void licencias2AMenu (){
+     public void licencias2AMenu (String rfc, int vigencia, float costo){
         menuForm m = new menuForm();
+        licencias.registrar(rfc, vigencia, costo);
         m.show();
     }
      

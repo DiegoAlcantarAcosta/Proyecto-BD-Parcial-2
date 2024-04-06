@@ -36,7 +36,6 @@ import tramite.EstadoTramite;
 @DiscriminatorColumn(name = "tipo_tramite", discriminatorType = DiscriminatorType.STRING)
 public class Tramite implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -44,9 +43,8 @@ public class Tramite implements Serializable {
     @Column(name="costo", nullable=false)
     private float costo;
     
-    @Enumerated(EnumType.STRING)
     @Column(name="estado", nullable=false)
-    private EstadoTramite estado;
+    private String estado;
     
     @Column(name = "fecha_expedicion")
     @Temporal(TemporalType.DATE)
@@ -59,18 +57,18 @@ public class Tramite implements Serializable {
     public Tramite() {
     }
 
-    public Tramite(float costo, EstadoTramite estado, Calendar fechaExpedicion, Persona persona) {
+    public Tramite(float costo, String estado, Calendar fechaExpedicion, Persona persona) {
         this.costo = costo;
         this.estado = estado;
         this.fechaExpedicion = fechaExpedicion;
         this.persona = persona;
     }
     
-    public EstadoTramite getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(EstadoTramite estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
     

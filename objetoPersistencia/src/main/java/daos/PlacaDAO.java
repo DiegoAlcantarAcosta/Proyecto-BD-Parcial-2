@@ -44,7 +44,7 @@ public class PlacaDAO implements IPlacaDAO{
             PersonaDAO buscaPersona = new PersonaDAO();
             Persona personaTramite = buscaPersona.consultarPersona(persona.getRfc());
 
-            Placa placa = new Placa(claveNumerica, vehiculo, costo, EstadoTramite.ACTIVA, fechaExpedicion, personaTramite);
+            Placa placa = new Placa(claveNumerica, vehiculo, costo, "ACTIVA", fechaExpedicion, personaTramite);
             em.persist(placa);
             em.getTransaction().commit();
 
@@ -89,7 +89,7 @@ public class PlacaDAO implements IPlacaDAO{
         try {
             Placa placa = getPlacaActiva(vehiculo);
             if (placa != null) {
-                placa.setEstado(EstadoTramite.VENCIDA);
+                placa.setEstado("VENCIDA");
                 placa.setFechaRecepcion(Calendar.getInstance());
                 em.merge(placa);
                 em.getTransaction().commit();
