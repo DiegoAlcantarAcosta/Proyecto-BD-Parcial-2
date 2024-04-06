@@ -6,6 +6,7 @@ package persistencia;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
@@ -34,11 +35,11 @@ public class Vehiculo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST) 
     @JoinColumn(name = "persona_id", nullable = false)
     private Persona persona;
     
-    @OneToMany(mappedBy = "vehiculo")
+    @OneToMany(mappedBy = "Vehiculo")
     private List<Placa> placas;
 
     public Vehiculo() {

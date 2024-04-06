@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import controladores.controlador;
 import javax.swing.JOptionPane;
 
 /**
@@ -11,6 +12,8 @@ import javax.swing.JOptionPane;
  * @author Diego
  */
 public class placasForm extends javax.swing.JFrame {
+
+    controlador c = new controlador();
 
     /**
      * Creates new form menuForm
@@ -196,32 +199,28 @@ public class placasForm extends javax.swing.JFrame {
     }//GEN-LAST:event_autoNuevoRadioButtonActionPerformed
 
     private void regresarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarButtonActionPerformed
-        menuForm m = new menuForm();
-        m.show();
+        c.placasAMenu();
         dispose();
     }//GEN-LAST:event_regresarButtonActionPerformed
 
     private void siguienteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteButtonActionPerformed
+
         if (autoNuevoRadioButton.isSelected()) {
-            placasAutoNuevo1 a = new placasAutoNuevo1();
-            a.show();
+            c.placasAutoNuevo1(rfcTextField.getText());
             dispose();
-        } else if (autoUsadoRadioButton.isSelected()){
-            placasAutoUsadoForm a = new placasAutoUsadoForm();
-            a.show();
+        } else if (autoUsadoRadioButton.isSelected()) {
+            c.placasAutoUsado1(rfcTextField.getText());
             dispose();
         } else {
-           JOptionPane.showMessageDialog(this, "Seleccione una opcion", "AVISO", JOptionPane.WARNING_MESSAGE);
-      
+            JOptionPane.showMessageDialog(this, "Seleccione una opcion", "AVISO", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_siguienteButtonActionPerformed
 
     private void autoUsadoRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoUsadoRadioButtonActionPerformed
-         if (autoUsadoRadioButton.isSelected()) {
+        if (autoUsadoRadioButton.isSelected()) {
             autoNuevoRadioButton.setSelected(false);
         }
     }//GEN-LAST:event_autoUsadoRadioButtonActionPerformed
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

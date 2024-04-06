@@ -13,8 +13,11 @@ public class placasAutoUsado2 extends javax.swing.JFrame {
     /**
      * Creates new form menuForm
      */
-    public placasAutoUsado2() {
+    public placasAutoUsado2(String rfc, String numSerie) {
         initComponents();
+        rfcTextField.setText(rfc);
+        numeroSerieTextField.setText(numSerie);
+        costoTextField.setText("1000");
     }
 
     /**

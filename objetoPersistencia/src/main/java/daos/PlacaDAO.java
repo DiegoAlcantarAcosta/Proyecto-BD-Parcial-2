@@ -9,7 +9,9 @@ import conexionEM.IConexion;
 import interfaces.daos.IPlacaDAO;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Random;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TemporalType;
@@ -17,34 +19,31 @@ import javax.persistence.TypedQuery;
 import persistencia.Persona;
 import persistencia.Placa;
 import persistencia.Vehiculo;
-import tramite.EstadoTramite;
 
 /**
  *
  * @author Héctor Francisco Báez Luque
  * @author Diego Alcantar Acosta
  */
-public class PlacaDAO implements IPlacaDAO{
+public class PlacaDAO implements IPlacaDAO {
 
     private IConexion conexion;
 
     public PlacaDAO() {
         conexion = new Conexion();
     }
-    
+
     @Override
     public Placa registrarPlaca(Vehiculo vehiculo, float costo, String claveNumerica, Persona persona) {
-        EntityManager em = conexion.abrir();
-        em.getTransaction().begin();
-
         try {
+            EntityManager em = conexion.abrir();
+            em.getTransaction().begin();
+            Calendar fechaActual = Calendar.getInstance();
 
-            Calendar fechaExpedicion = Calendar.getInstance();
-            
             PersonaDAO buscaPersona = new PersonaDAO();
             Persona personaTramite = buscaPersona.consultarPersona(persona.getRfc());
 
-            Placa placa = new Placa(claveNumerica, vehiculo, costo, "ACTIVA", fechaExpedicion, personaTramite);
+            Placa placa = new Placa(claveNumerica, vehiculo, costo, "ACTIVA", fechaActual, personaTramite);
             em.persist(placa);
             em.getTransaction().commit();
 
@@ -54,14 +53,10 @@ public class PlacaDAO implements IPlacaDAO{
             placaDTO.setFechaExpedicion(placa.getFechaExpedicion());
             placaDTO.setVehiculo(placa.getVehiculo());
             placaDTO.setCosto(placa.getCosto());
-
+            em.close();
             return placaDTO;
         } catch (Exception e) {
-            em.getTransaction().rollback();
-            e.printStackTrace();
             throw e;
-        } finally {
-            em.close();
         }
     }
 
@@ -72,7 +67,7 @@ public class PlacaDAO implements IPlacaDAO{
             String sentencia = "SELECT p FROM Placa p WHERE p.vehiculo = :vehiculo AND p.estado = :estado";
             TypedQuery<Placa> query = em.createQuery(sentencia, Placa.class);
             query.setParameter("vehiculo", vehiculo);
-            query.setParameter("estado", EstadoTramite.ACTIVA);
+            query.setParameter("estado", "ACTIVA");
             return query.getSingleResult();
         } catch (NoResultException e) {
             e.printStackTrace();
@@ -126,7 +121,7 @@ public class PlacaDAO implements IPlacaDAO{
         TypedQuery<Placa> query;
 
         try {
-            String sentencia = "SELECT p FROM Placa p WHERE 1 = 1"; 
+            String sentencia = "SELECT p FROM Placa p WHERE 1 = 1";
 
             if (desde != null && hasta != null) {
                 sentencia += " AND p.fechaExpedicion BETWEEN :desde AND :hasta";
@@ -152,5 +147,26 @@ public class PlacaDAO implements IPlacaDAO{
             em.close();
         }
     }
-    
+
+    public String numAlfaNiumerico() {
+        Random random = new Random();
+        StringBuilder codigo = new StringBuilder();
+
+        // Generar tres letras aleatorias
+        for (int i = 0; i < 3; i++) {
+            char letra = (char) (random.nextInt(26) + 'A');
+            codigo.append(letra);
+        }
+
+        // Añadir un guión
+        codigo.append("-");
+
+        // Generar tres dígitos aleatorios
+        for (int i = 0; i < 3; i++) {
+            int digito = random.nextInt(10);
+            codigo.append(digito);
+        }
+
+        return codigo.toString();
+    }
 }

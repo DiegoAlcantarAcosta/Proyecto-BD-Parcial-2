@@ -4,11 +4,16 @@
  */
 package moduloPlacas;
 
+import persistencia.Persona;
+import persistencia.Placa;
+import persistencia.Vehiculo;
+
 /**
  *
  * @author Héctor Francisco Báez Luque
  * @author Diego Alcantar Acosta
  */
 public interface ITramitarPlacaBO {
-    
+    public Placa registrarPlaca(Vehiculo vehiculo, float costo, String claveNumerica, Persona persona);
+    public Placa getPlacaActiva(Vehiculo vehiculo);
 }

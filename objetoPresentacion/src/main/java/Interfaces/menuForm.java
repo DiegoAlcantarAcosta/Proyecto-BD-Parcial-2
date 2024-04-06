@@ -214,7 +214,8 @@ public class menuForm extends javax.swing.JFrame {
     }//GEN-LAST:event_placasButtonActionPerformed
 
     private void consultarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarButtonActionPerformed
-        // TODO add your handling code here:
+        c.menuAConsultas1();
+        dispose();
     }//GEN-LAST:event_consultarButtonActionPerformed
 
     private void reportesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportesButtonActionPerformed

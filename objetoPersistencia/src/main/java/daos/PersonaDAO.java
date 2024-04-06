@@ -21,27 +21,27 @@ import persistencia.Persona;
  * @author Héctor Francisco Báez Luque
  * @author Diego Alcantar Acosta
  */
-public class PersonaDAO implements IPersonaDAO{
+public class PersonaDAO implements IPersonaDAO {
 
     private final IConexion conexion;
 
     public PersonaDAO() {
         conexion = new Conexion();
     }
-    
+
     @Override
     public void registrar(Persona persona) {
-        
+
         EntityManager em = conexion.abrir();
         em.getTransaction().begin();
 
         try {
-            Persona personaRegistrar = new Persona(persona.getRfc(), 
-                    persona.getNombre(), persona.getApellidoPaterno(), persona.getApellidoMaterno(), 
+            Persona personaRegistrar = new Persona(persona.getRfc(),
+                    persona.getNombre(), persona.getApellidoPaterno(), persona.getApellidoMaterno(),
                     persona.getTelefono(), persona.getFechaNacimiento(), persona.isDiscapacidad());
             em.persist(personaRegistrar);
             em.getTransaction().commit();
-            
+
         } catch (Exception e) {
             em.getTransaction().rollback();
             e.printStackTrace();
@@ -49,7 +49,7 @@ public class PersonaDAO implements IPersonaDAO{
         } finally {
             em.close();
         }
-        
+
     }
 
     @Override
@@ -95,14 +95,14 @@ public class PersonaDAO implements IPersonaDAO{
             personaDTO.setTelefono(personaBuscada.getTelefono());
             personaDTO.setFechaNacimiento(personaBuscada.getFechaNacimiento());
             personaDTO.setDiscapacidad(personaBuscada.isDiscapacidad());
-
+            
+            em.close();
+            
             return personaDTO;
         } catch (Exception e) {
             em.getTransaction().rollback();
             e.printStackTrace();
             throw e;
-        } finally {
-            em.close();
         }
     }
 
@@ -116,7 +116,7 @@ public class PersonaDAO implements IPersonaDAO{
             String sentencia = "SELECT p FROM Persona p WHERE p.rfc = :rfc";
             TypedQuery<Persona> query = em.createQuery(sentencia, Persona.class);
             query.setParameter("rfc", rfc);
-            
+
             return query.getSingleResult();
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -132,10 +132,10 @@ public class PersonaDAO implements IPersonaDAO{
         Persona persona = consultarPersona(rfc);
         if (persona != null) {
             Calendar fechaNacimientoCalendar = persona.getFechaNacimiento();
-            
+
             LocalDate fechaNacimiento = LocalDate.of(
                     fechaNacimientoCalendar.get(Calendar.YEAR),
-                    fechaNacimientoCalendar.get(Calendar.MONTH) + 1, 
+                    fechaNacimientoCalendar.get(Calendar.MONTH) + 1,
                     fechaNacimientoCalendar.get(Calendar.DAY_OF_MONTH)
             );
             LocalDate fechaActual = LocalDate.now();

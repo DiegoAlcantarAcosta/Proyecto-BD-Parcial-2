@@ -208,6 +208,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Regresar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regresarButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="siguienteButton">
           <Properties>
@@ -288,6 +291,9 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="numeroSerieTextFieldActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="lineaTextField">
           <Properties>
@@ -299,6 +305,9 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lineaTextFieldActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="modeloTextField">
           <Properties>
@@ -310,6 +319,9 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="modeloTextFieldActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="marcaTextField">
           <Properties>
@@ -335,6 +347,9 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="colorTextFieldActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

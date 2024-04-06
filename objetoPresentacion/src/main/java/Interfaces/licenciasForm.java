@@ -180,7 +180,7 @@ public class licenciasForm extends javax.swing.JFrame {
             try {
                 c.licencia1ALicencia2(rfcTextField.getText());
             } catch (Exception ex) {
-                Logger.getLogger(licenciasForm.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(licenciasForm.class.getName()).log(Level.WARNING, "No se pudo", ex);
             }
             dispose();
         }

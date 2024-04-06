@@ -4,17 +4,29 @@
  */
 package Interfaces;
 
+import controladores.controlador;
+import persistencia.Automovil;
+
 /**
  *
  * @author Diego
  */
 public class placasAutoNuevo2 extends javax.swing.JFrame {
 
+    controlador c = new controlador();
+    String x;
+    int costo = 1500;
+    Automovil carrito;
     /**
      * Creates new form menuForm
      */
-    public placasAutoNuevo2() {
+    public placasAutoNuevo2(String rfc, Automovil auto) {
         initComponents();
+        x = rfc;
+        carrito = auto;
+        rfcTextField.setText(rfc);
+        numeroSerieTextField.setText(auto.getNumSerie());
+        costoTextField.setText("" + costo);
     }
 
     /**
@@ -81,6 +93,11 @@ public class placasAutoNuevo2 extends javax.swing.JFrame {
         regresarButton.setBackground(new java.awt.Color(255, 255, 255));
         regresarButton.setForeground(new java.awt.Color(0, 0, 0));
         regresarButton.setText("Regresar");
+        regresarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarButtonActionPerformed(evt);
+            }
+        });
 
         pagarButton.setBackground(new java.awt.Color(255, 255, 255));
         pagarButton.setForeground(new java.awt.Color(0, 0, 0));
@@ -209,7 +226,8 @@ public class placasAutoNuevo2 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pagarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagarButtonActionPerformed
-        // TODO add your handling code here:
+        c.pagarAutoNuevo(x, costo, carrito);
+        dispose();
     }//GEN-LAST:event_pagarButtonActionPerformed
 
     private void numeroSerieTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroSerieTextFieldActionPerformed
@@ -224,6 +242,10 @@ public class placasAutoNuevo2 extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_costoTextFieldActionPerformed
 
+    private void regresarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarButtonActionPerformed
+        c.placas2APlacas1(x);
+        dispose();
+    }//GEN-LAST:event_regresarButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

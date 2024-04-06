@@ -4,17 +4,25 @@
  */
 package Interfaces;
 
+import controladores.controlador;
+import daos.PersonaDAO;
+import persistencia.Automovil;
+import persistencia.Persona;
+
 /**
  *
  * @author Diego
  */
 public class placasAutoNuevo1 extends javax.swing.JFrame {
 
+    controlador c = new controlador();
+    String x;
     /**
      * Creates new form menuForm
      */
-    public placasAutoNuevo1() {
+    public placasAutoNuevo1(String rfc) {
         initComponents();
+        x = rfc;
     }
 
     /**
@@ -85,6 +93,11 @@ public class placasAutoNuevo1 extends javax.swing.JFrame {
         regresarButton.setBackground(new java.awt.Color(255, 255, 255));
         regresarButton.setForeground(new java.awt.Color(0, 0, 0));
         regresarButton.setText("Regresar");
+        regresarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarButtonActionPerformed(evt);
+            }
+        });
 
         siguienteButton.setBackground(new java.awt.Color(255, 255, 255));
         siguienteButton.setForeground(new java.awt.Color(0, 0, 0));
@@ -117,12 +130,27 @@ public class placasAutoNuevo1 extends javax.swing.JFrame {
 
         numeroSerieTextField.setBackground(new java.awt.Color(255, 255, 255));
         numeroSerieTextField.setForeground(new java.awt.Color(0, 0, 0));
+        numeroSerieTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numeroSerieTextFieldActionPerformed(evt);
+            }
+        });
 
         lineaTextField.setBackground(new java.awt.Color(255, 255, 255));
         lineaTextField.setForeground(new java.awt.Color(0, 0, 0));
+        lineaTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lineaTextFieldActionPerformed(evt);
+            }
+        });
 
         modeloTextField.setBackground(new java.awt.Color(255, 255, 255));
         modeloTextField.setForeground(new java.awt.Color(0, 0, 0));
+        modeloTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modeloTextFieldActionPerformed(evt);
+            }
+        });
 
         marcaTextField.setBackground(new java.awt.Color(255, 255, 255));
         marcaTextField.setForeground(new java.awt.Color(0, 0, 0));
@@ -134,6 +162,11 @@ public class placasAutoNuevo1 extends javax.swing.JFrame {
 
         colorTextField.setBackground(new java.awt.Color(255, 255, 255));
         colorTextField.setForeground(new java.awt.Color(0, 0, 0));
+        colorTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colorTextFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -228,9 +261,33 @@ public class placasAutoNuevo1 extends javax.swing.JFrame {
     }//GEN-LAST:event_marcaTextFieldActionPerformed
 
     private void siguienteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteButtonActionPerformed
-        // TODO add your handling code here:
+        PersonaDAO persona = new PersonaDAO();
+        Persona p = persona.getPersona(x);
+        Automovil auto = new Automovil(numeroSerieTextField.getText(), marcaTextField.getText(), lineaTextField.getText(), colorTextField.getText(), Integer.parseInt(modeloTextField.getText()), p);
+        c.placas1APlacas2(x, auto );
+        dispose();
     }//GEN-LAST:event_siguienteButtonActionPerformed
 
+    private void numeroSerieTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroSerieTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numeroSerieTextFieldActionPerformed
+
+    private void lineaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lineaTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lineaTextFieldActionPerformed
+
+    private void modeloTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modeloTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modeloTextFieldActionPerformed
+
+    private void colorTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colorTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_colorTextFieldActionPerformed
+
+    private void regresarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarButtonActionPerformed
+       c.placas1APlacas();
+       dispose();
+    }//GEN-LAST:event_regresarButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

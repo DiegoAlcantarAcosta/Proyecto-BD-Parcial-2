@@ -18,15 +18,14 @@ import persistencia.Persona;
  * @author Héctor Francisco Báez Luque
  * @author Diego Alcantar Acosta
  */
-public class AutomovilDAO implements IAutomovilDAO{
+public class AutomovilDAO implements IAutomovilDAO {
 
     private final IConexion conexion;
 
     public AutomovilDAO() {
         conexion = new Conexion();
     }
-    
-    
+
     @Override
     public Automovil registrar(String numSerie, String marca, String linea, String color, int modelo, Persona persona) {
         EntityManager entityManager = conexion.abrir();
@@ -90,15 +89,13 @@ public class AutomovilDAO implements IAutomovilDAO{
             automovilDTO.setModelo(automovilBuscado.getModelo());
             automovilDTO.setColor(automovilBuscado.getColor());
             automovilDTO.setLinea(automovilBuscado.getLinea());
-
+            
+            entityManager.close();
+            
             return automovilDTO;
         } catch (Exception e) {
-            entityManager.getTransaction().rollback();
-            e.printStackTrace();
-        } finally {
-            entityManager.close();
+            throw e;
         }
-        return null;
     }
 
     @Override
@@ -127,7 +124,7 @@ public class AutomovilDAO implements IAutomovilDAO{
     public Automovil obtenerPorPlacas(String claveNumerica, String rfc) {
         EntityManager em = conexion.abrir();
         em.getTransaction().begin();
-        
+
         try {
             String sentencia = "SELECT a FROM Automovil a INNER JOIN a.placas p WHERE p.numeroAlfanumerico = :numeroAlfanumerico AND a.persona.rfc = :rfc";
             TypedQuery<Automovil> query = em.createQuery(sentencia, Automovil.class);
@@ -144,13 +141,13 @@ public class AutomovilDAO implements IAutomovilDAO{
                 encontrado.setColor(automovil.getColor());
                 return encontrado;
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             em.getTransaction().rollback();
             e.printStackTrace();
-        }finally {
+        } finally {
             em.close();
         }
         return null;
     }
-    
+
 }

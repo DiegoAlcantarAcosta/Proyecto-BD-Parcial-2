@@ -4,17 +4,23 @@
  */
 package Interfaces;
 
+import controladores.controlador;
+
 /**
  *
  * @author Diego
  */
 public class placasAutoUsadoForm extends javax.swing.JFrame {
 
+    controlador c = new controlador();
+    String x;
+
     /**
      * Creates new form menuForm
      */
-    public placasAutoUsadoForm() {
+    public placasAutoUsadoForm(String rfc) {
         initComponents();
+        x = rfc;
     }
 
     /**
@@ -80,14 +86,29 @@ public class placasAutoUsadoForm extends javax.swing.JFrame {
 
         numeroSerieTextField.setBackground(new java.awt.Color(255, 255, 255));
         numeroSerieTextField.setForeground(new java.awt.Color(0, 0, 0));
+        numeroSerieTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numeroSerieTextFieldActionPerformed(evt);
+            }
+        });
 
         siguienteButton.setBackground(new java.awt.Color(255, 255, 255));
         siguienteButton.setForeground(new java.awt.Color(0, 0, 0));
         siguienteButton.setText("Siguiente");
+        siguienteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                siguienteButtonActionPerformed(evt);
+            }
+        });
 
         regresarButton.setBackground(new java.awt.Color(255, 255, 255));
         regresarButton.setForeground(new java.awt.Color(0, 0, 0));
         regresarButton.setText("Regresar");
+        regresarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -149,6 +170,19 @@ public class placasAutoUsadoForm extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void siguienteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteButtonActionPerformed
+        c.placasformAPlacas1(x, numeroSerieTextField.getText());
+        dispose();
+    }//GEN-LAST:event_siguienteButtonActionPerformed
+
+    private void regresarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarButtonActionPerformed
+        c.Placas1AplacasForm();
+        dispose();
+    }//GEN-LAST:event_regresarButtonActionPerformed
+
+    private void numeroSerieTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroSerieTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numeroSerieTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
