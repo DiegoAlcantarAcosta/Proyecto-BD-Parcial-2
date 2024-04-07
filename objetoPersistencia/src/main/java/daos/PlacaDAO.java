@@ -9,13 +9,13 @@ import conexionEM.IConexion;
 import interfaces.daos.IPlacaDAO;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
+import persistencia.Licencia;
 import persistencia.Persona;
 import persistencia.Placa;
 import persistencia.Vehiculo;
@@ -168,5 +168,40 @@ public class PlacaDAO implements IPlacaDAO {
         }
 
         return codigo.toString();
+    }
+
+    @Override
+    public List<Placa> getPlacasPorNombre(String nombre) {
+        EntityManager em = conexion.abrir();
+        em.getTransaction().begin();
+
+        try {
+            String sentencia = "SELECT p "
+                    + "FROM Placas p "
+                    + "JOIN p.persona pers "
+                    + "WHERE pers.nombre = :nombrePersona";
+            TypedQuery<Placa> query = em.createQuery(sentencia, Placa.class);
+            query.setParameter("nombre", nombre);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public List<Placa> getPlacasPorFecha(Date fecha) {
+        EntityManager em = conexion.abrir();
+        em.getTransaction().begin();
+        try {
+            String sentencia = "SELECT p "
+                    + "FROM Placas p "
+                    + "JOIN p.tramite t "
+                    + "WHERE t.fechaExpedicion = :fechaExpedicion";
+            TypedQuery<Placa> query = em.createQuery(sentencia, Placa.class);
+            query.setParameter("fechaExpedicion", fecha);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
     }
 }

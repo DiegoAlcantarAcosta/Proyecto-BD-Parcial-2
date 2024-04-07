@@ -4,6 +4,7 @@
  */
 package interfaces.daos;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import persistencia.Licencia;
@@ -21,4 +22,6 @@ public interface ILicenciaDAO {
     public boolean isLicenciaActiva(String rfc);
     public List<Licencia> getLicenciasPorRFC(String rfc);
     public List<Licencia> reporteLicencias(Date desde, Date hasta, String nombre);
+    public List<Licencia> getLicenciasPorNombre(String nombre);
+    public List<Licencia> getLicenciasPorFecha(Date fecha);
 }

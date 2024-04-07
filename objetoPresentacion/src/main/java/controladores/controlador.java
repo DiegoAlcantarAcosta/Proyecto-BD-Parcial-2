@@ -5,6 +5,7 @@
 package controladores;
 
 import Interfaces.consultas1Form;
+import Interfaces.consultas2Form;
 import Interfaces.licenciasForm;
 import Interfaces.licenciasForm2;
 import Interfaces.menuForm;
@@ -18,6 +19,7 @@ import daos.AutomovilDAO;
 import daos.LicenciaDAO;
 import daos.PersonaDAO;
 import daos.PlacaDAO;
+import java.text.ParseException;
 import persistencia.Automovil;
 import persistencia.Persona;
 
@@ -118,6 +120,11 @@ public class controlador {
     
      public void menuAConsultas1() {
          consultas1Form c = new consultas1Form();
+        c.show();
+    }
+     
+     public void consultas1Aconsultas2(String tipoConsulta, String buscarPor, String dato) throws ParseException {
+         consultas2Form c = new consultas2Form( tipoConsulta, buscarPor, dato);
         c.show();
     }
 }

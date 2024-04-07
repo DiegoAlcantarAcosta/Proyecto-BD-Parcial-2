@@ -5,6 +5,11 @@
 package Interfaces;
 
 import controladores.controlador;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,7 +25,7 @@ public class consultas1Form extends javax.swing.JFrame {
      */
     public consultas1Form() {
         initComponents();
-        datosTextField.setVisible(false);
+        datosTextField.setVisible(true);
         fechaDateChooser.setVisible(false);
     }
 
@@ -141,7 +146,7 @@ public class consultas1Form extends javax.swing.JFrame {
 
         fechaNacimientoRadioButton.setBackground(new java.awt.Color(153, 153, 153));
         fechaNacimientoRadioButton.setForeground(new java.awt.Color(0, 0, 0));
-        fechaNacimientoRadioButton.setText("Fecha Nacimiento");
+        fechaNacimientoRadioButton.setText("Fecha Expedicion");
         fechaNacimientoRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fechaNacimientoRadioButtonActionPerformed(evt);
@@ -165,34 +170,33 @@ public class consultas1Form extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addComponent(nombreRadioButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jLabel6)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(fechaNacimientoRadioButton)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(nombreRadioButton)
+                                            .addGap(91, 91, 91)
+                                            .addComponent(fechaNacimientoRadioButton))
                                         .addComponent(jLabel7))
-                                    .addGap(28, 28, 28)))
-                            .addGap(61, 61, 61)
+                                    .addGap(34, 34, 34)))
+                            .addGap(59, 59, 59)
                             .addComponent(rfcRadioButton)
-                            .addGap(138, 138, 138))
+                            .addGap(140, 140, 140))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(182, 182, 182)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(datosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(fechaDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(regresarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(127, 127, 127)
                                     .addComponent(siguienteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(fechaDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(datosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(159, 159, 159)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -216,22 +220,22 @@ public class consultas1Form extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(licenciaRadioButton)
                     .addComponent(placasRadioButton))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rfcRadioButton)
-                    .addComponent(fechaNacimientoRadioButton)
-                    .addComponent(nombreRadioButton))
-                .addGap(18, 18, 18)
-                .addComponent(fechaDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(datosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel7)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(siguienteButton)
-                    .addComponent(regresarButton))
-                .addGap(21, 21, 21))
+                    .addComponent(fechaNacimientoRadioButton)
+                    .addComponent(nombreRadioButton)
+                    .addComponent(rfcRadioButton))
+                .addGap(18, 18, 18)
+                .addComponent(datosTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(fechaDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(regresarButton)
+                    .addComponent(siguienteButton))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -260,16 +264,35 @@ public class consultas1Form extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_regresarButtonActionPerformed
 
-    private void siguienteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteButtonActionPerformed
-
-        if (licenciaRadioButton.isSelected()) {
-            c.placasAutoNuevo1(datosTextField.getText());
-            dispose();
-        } else if (placasRadioButton.isSelected()) {
-            c.placasAutoUsado1(datosTextField.getText());
-            dispose();
+    public void seleccion() throws ParseException {
+        if (licenciaRadioButton.isSelected() && nombreRadioButton.isSelected()) {
+            c.consultas1Aconsultas2("LICENCIA", "NOMBRE", datosTextField.getText());
+        } else if (licenciaRadioButton.isSelected() && fechaNacimientoRadioButton.isSelected()) {
+            Date fechaSeleccionada = fechaDateChooser.getDate();
+            SimpleDateFormat formatoSalida = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaFormateada = formatoSalida.format(fechaSeleccionada);
+            c.consultas1Aconsultas2("LICENCIA", "FECHA", fechaFormateada);
+        } else if (licenciaRadioButton.isSelected() && rfcRadioButton.isSelected()) {
+            c.consultas1Aconsultas2("LICENCIA", "RFC", datosTextField.getText());
+        } else if (placasRadioButton.isSelected() && nombreRadioButton.isSelected()) {
+            c.consultas1Aconsultas2("PLACA", "NOMBRE", datosTextField.getText());
+        } else if (placasRadioButton.isSelected() && fechaNacimientoRadioButton.isSelected()) {
+            Date fechaSeleccionada = fechaDateChooser.getDate();
+            SimpleDateFormat formatoSalida = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaFormateada = formatoSalida.format(fechaSeleccionada);
+            c.consultas1Aconsultas2("PLACA", "FECHA", fechaFormateada);
+        } else if (placasRadioButton.isSelected() && rfcRadioButton.isSelected()) {
+            c.consultas1Aconsultas2("PLACA", "RFC", datosTextField.getText());
         } else {
-            JOptionPane.showMessageDialog(this, "Seleccione una opcion", "AVISO", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Falta alguna opcion por marcar", "AVISO", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    private void siguienteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteButtonActionPerformed
+        try {
+            seleccion();
+        } catch (ParseException ex) {
+            Logger.getLogger(consultas1Form.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_siguienteButtonActionPerformed
 
@@ -280,30 +303,30 @@ public class consultas1Form extends javax.swing.JFrame {
     }//GEN-LAST:event_placasRadioButtonActionPerformed
 
     private void nombreRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreRadioButtonActionPerformed
-       if (nombreRadioButton.isSelected()) {
-           fechaNacimientoRadioButton.setSelected(false);
-           rfcRadioButton.setSelected(false);
-           datosTextField.setVisible(true);
+        if (nombreRadioButton.isSelected()) {
+            fechaNacimientoRadioButton.setSelected(false);
+            rfcRadioButton.setSelected(false);
             fechaDateChooser.setVisible(false);
-       }
+            datosTextField.setVisible(true);
+        }
     }//GEN-LAST:event_nombreRadioButtonActionPerformed
 
     private void fechaNacimientoRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaNacimientoRadioButtonActionPerformed
         if (fechaNacimientoRadioButton.isSelected()) {
-           nombreRadioButton.setSelected(false);
-           rfcRadioButton.setSelected(false);
-           datosTextField.setVisible(false);
+            nombreRadioButton.setSelected(false);
+            rfcRadioButton.setSelected(false);
+            datosTextField.setVisible(false);
             fechaDateChooser.setVisible(true);
-       }
+        }
     }//GEN-LAST:event_fechaNacimientoRadioButtonActionPerformed
 
     private void rfcRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rfcRadioButtonActionPerformed
         if (rfcRadioButton.isSelected()) {
-           fechaNacimientoRadioButton.setSelected(false);
-           nombreRadioButton.setSelected(false);
-           datosTextField.setVisible(true);
-           fechaDateChooser.setVisible(false);
-       }
+            fechaNacimientoRadioButton.setSelected(false);
+            nombreRadioButton.setSelected(false);
+            fechaDateChooser.setVisible(false);
+            datosTextField.setVisible(true);
+        }
     }//GEN-LAST:event_rfcRadioButtonActionPerformed
 
 

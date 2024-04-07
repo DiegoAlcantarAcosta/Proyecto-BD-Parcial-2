@@ -4,6 +4,7 @@
  */
 package interfaces.daos;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import persistencia.Persona;
@@ -22,5 +23,6 @@ public interface IPlacaDAO {
     public void desactivarPlaca(Vehiculo vehiculo);
     public List<Placa> getPlacasPorRFC(String rfc);
     public List<Placa> reportePlacas(Date desde, Date hasta, String nombre);
-    
+    public List<Placa> getPlacasPorNombre(String nombre);
+    public List<Placa> getPlacasPorFecha(Date fecha);
 }

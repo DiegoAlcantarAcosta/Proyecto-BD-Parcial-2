@@ -17,7 +17,6 @@ import javax.persistence.TypedQuery;
 import persistencia.Licencia;
 import persistencia.Persona;
 import persistencia.Tramite;
-import tramite.EstadoTramite;
 
 /**
  *
@@ -158,6 +157,39 @@ public class LicenciaDAO implements ILicenciaDAO {
                 query.setParameter("nombre", "%" + nombre + "%");
             }
 
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public List<Licencia> getLicenciasPorNombre(String nombre) {
+        EntityManager em = conexion.abrir();
+        em.getTransaction().begin();
+        try {
+            String sentencia = "SELECT l FROM Licencia l "
+                    + "JOIN l.persona p "
+                    + "WHERE p.nombre = :nombre";
+            TypedQuery<Licencia> query = em.createQuery(sentencia, Licencia.class);
+            query.setParameter("nombre", nombre);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public List<Licencia> getLicenciasPorFecha(Date fecha) {
+        EntityManager em = conexion.abrir();
+        em.getTransaction().begin();
+        try {
+            String sentencia = "SELECT l "
+                    + "FROM Licencia l "
+                    + "JOIN l.tramites t "
+                    + "WHERE t.fechaExpedicion = :fechaExpedicion";
+            TypedQuery<Licencia> query = em.createQuery(sentencia, Licencia.class);
+            query.setParameter("fechaExpedicion", fecha);
             return query.getResultList();
         } finally {
             em.close();
