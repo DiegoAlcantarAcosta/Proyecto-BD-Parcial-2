@@ -186,10 +186,10 @@ public class LicenciaDAO implements ILicenciaDAO {
         try {
             String sentencia = "SELECT l "
                     + "FROM Licencia l "
-                    + "JOIN l.tramites t "
-                    + "WHERE t.fechaExpedicion = :fechaExpedicion";
+                    + "JOIN l.persona t "
+                    + "WHERE t.fechaNacimiento = :fechaNacimiento";
             TypedQuery<Licencia> query = em.createQuery(sentencia, Licencia.class);
-            query.setParameter("fechaExpedicion", fecha);
+            query.setParameter("fechaNacimiento", fecha);
             return query.getResultList();
         } finally {
             em.close();

@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
  * @author Héctor Francisco Báez Luque
  * @author Diego
  */
+
 @Entity
 @Table(name = "Placas")
 @DiscriminatorValue("Placa")

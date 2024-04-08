@@ -122,7 +122,7 @@ public class menuForm extends javax.swing.JFrame {
 
         consultarButton.setBackground(new java.awt.Color(255, 255, 255));
         consultarButton.setForeground(new java.awt.Color(0, 0, 0));
-        consultarButton.setText("Reportar");
+        consultarButton.setText("Consultar");
         consultarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 consultarButtonActionPerformed(evt);

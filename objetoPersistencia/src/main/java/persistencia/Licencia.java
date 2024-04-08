@@ -14,7 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 /**
- *@author Héctor Francisco Báez Luque
+ * @author Héctor Francisco Báez Luque
  * @author Diego
  */
 @Entity
@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
 @DiscriminatorValue("Licencia")
 public class Licencia extends Tramite implements Serializable {
 
-     @Column(name = "vigencia")
+    @Column(name = "vigencia")
     @Temporal(TemporalType.DATE)
     private Calendar vigencia;
 
@@ -45,7 +45,7 @@ public class Licencia extends Tramite implements Serializable {
     public void setVigencia(Calendar vigencia) {
         this.vigencia = vigencia;
     }
-    
+
     public String estadoLicencia() {
         Calendar fechaActual = Calendar.getInstance();
         if (getVigencia().after(fechaActual)) {
@@ -59,5 +59,5 @@ public class Licencia extends Tramite implements Serializable {
     public String toString() {
         return "Licencia{" + "vigencia=" + vigencia + '}';
     }
-    
+
 }

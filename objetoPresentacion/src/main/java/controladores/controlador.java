@@ -20,6 +20,7 @@ import daos.LicenciaDAO;
 import daos.PersonaDAO;
 import daos.PlacaDAO;
 import java.text.ParseException;
+import java.util.Date;
 import persistencia.Automovil;
 import persistencia.Persona;
 
@@ -124,6 +125,11 @@ public class controlador {
     }
      
      public void consultas1Aconsultas2(String tipoConsulta, String buscarPor, String dato) throws ParseException {
+         consultas2Form c = new consultas2Form( tipoConsulta, buscarPor, dato);
+        c.show();
+    }
+     
+     public void consultas1Aconsultas2(String tipoConsulta, String buscarPor, Date dato) throws ParseException {
          consultas2Form c = new consultas2Form( tipoConsulta, buscarPor, dato);
         c.show();
     }

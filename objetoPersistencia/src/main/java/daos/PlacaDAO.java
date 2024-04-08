@@ -177,9 +177,9 @@ public class PlacaDAO implements IPlacaDAO {
 
         try {
             String sentencia = "SELECT p "
-                    + "FROM Placas p "
+                    + "FROM Placa p "
                     + "JOIN p.persona pers "
-                    + "WHERE pers.nombre = :nombrePersona";
+                    + "WHERE pers.nombre = :nombre";
             TypedQuery<Placa> query = em.createQuery(sentencia, Placa.class);
             query.setParameter("nombre", nombre);
             return query.getResultList();
@@ -194,11 +194,11 @@ public class PlacaDAO implements IPlacaDAO {
         em.getTransaction().begin();
         try {
             String sentencia = "SELECT p "
-                    + "FROM Placas p "
-                    + "JOIN p.tramite t "
-                    + "WHERE t.fechaExpedicion = :fechaExpedicion";
+                    + "FROM Placa p "
+                    + "JOIN p.persona t "
+                    + "WHERE t.fechaNacimiento = :fechaNacimiento";
             TypedQuery<Placa> query = em.createQuery(sentencia, Placa.class);
-            query.setParameter("fechaExpedicion", fecha);
+            query.setParameter("fechaNacimiento", fecha);
             return query.getResultList();
         } finally {
             em.close();

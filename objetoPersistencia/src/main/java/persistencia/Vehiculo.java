@@ -24,6 +24,7 @@ import javax.persistence.Table;
  *@author Héctor Francisco Báez Luque
  * @author Diego
  */
+
 @Entity
 @Table(name="Vehiculos")
 @Inheritance(strategy = InheritanceType.JOINED)

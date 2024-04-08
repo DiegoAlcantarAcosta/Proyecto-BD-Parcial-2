@@ -146,7 +146,7 @@ public class consultas1Form extends javax.swing.JFrame {
 
         fechaNacimientoRadioButton.setBackground(new java.awt.Color(153, 153, 153));
         fechaNacimientoRadioButton.setForeground(new java.awt.Color(0, 0, 0));
-        fechaNacimientoRadioButton.setText("Fecha Expedicion");
+        fechaNacimientoRadioButton.setText("Fecha Nacimiento");
         fechaNacimientoRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fechaNacimientoRadioButtonActionPerformed(evt);
@@ -268,19 +268,13 @@ public class consultas1Form extends javax.swing.JFrame {
         if (licenciaRadioButton.isSelected() && nombreRadioButton.isSelected()) {
             c.consultas1Aconsultas2("LICENCIA", "NOMBRE", datosTextField.getText());
         } else if (licenciaRadioButton.isSelected() && fechaNacimientoRadioButton.isSelected()) {
-            Date fechaSeleccionada = fechaDateChooser.getDate();
-            SimpleDateFormat formatoSalida = new SimpleDateFormat("dd/MM/yyyy");
-            String fechaFormateada = formatoSalida.format(fechaSeleccionada);
-            c.consultas1Aconsultas2("LICENCIA", "FECHA", fechaFormateada);
+            c.consultas1Aconsultas2("LICENCIA", "FECHA", fechaDateChooser.getDate());
         } else if (licenciaRadioButton.isSelected() && rfcRadioButton.isSelected()) {
             c.consultas1Aconsultas2("LICENCIA", "RFC", datosTextField.getText());
         } else if (placasRadioButton.isSelected() && nombreRadioButton.isSelected()) {
             c.consultas1Aconsultas2("PLACA", "NOMBRE", datosTextField.getText());
         } else if (placasRadioButton.isSelected() && fechaNacimientoRadioButton.isSelected()) {
-            Date fechaSeleccionada = fechaDateChooser.getDate();
-            SimpleDateFormat formatoSalida = new SimpleDateFormat("dd/MM/yyyy");
-            String fechaFormateada = formatoSalida.format(fechaSeleccionada);
-            c.consultas1Aconsultas2("PLACA", "FECHA", fechaFormateada);
+            c.consultas1Aconsultas2("PLACA", "FECHA", fechaDateChooser.getDate());
         } else if (placasRadioButton.isSelected() && rfcRadioButton.isSelected()) {
             c.consultas1Aconsultas2("PLACA", "RFC", datosTextField.getText());
         } else {

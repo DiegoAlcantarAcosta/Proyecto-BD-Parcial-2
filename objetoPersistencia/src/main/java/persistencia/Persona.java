@@ -22,6 +22,7 @@ import javax.persistence.TemporalType;
  *@author Héctor Francisco Báez Luque
  * @author Diego
  */
+
 @Entity
 @Table(name = "Personas")
 public class Persona implements Serializable {
@@ -55,7 +56,7 @@ public class Persona implements Serializable {
     @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
     private List<Vehiculo> vehiculos;
 
-    @OneToMany(mappedBy = "persona", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
     private List<Tramite> tramites;
 
     public Persona(String rfc, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, Calendar fechaNacimiento) {

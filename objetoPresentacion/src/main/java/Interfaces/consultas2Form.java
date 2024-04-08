@@ -4,19 +4,16 @@
  */
 package Interfaces;
 
-import controladores.controlador;
 import daos.LicenciaDAO;
 import daos.PlacaDAO;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import persistencia.Licencia;
 import persistencia.Placa;
-import persistencia.Tramite;
 
 /**
  *
@@ -29,6 +26,7 @@ public class consultas2Form extends javax.swing.JFrame {
     String dato;
     String tipoConsulta;
     String buscarPor;
+    Date fecha;
 
     /**
      * Creates new form menuForm
@@ -41,6 +39,13 @@ public class consultas2Form extends javax.swing.JFrame {
         seleccion();
     }
 
+     public consultas2Form(String tipo, String busqueda, Date info) throws ParseException {
+        initComponents();
+        fecha = info;
+        tipoConsulta = tipo;
+        buscarPor = busqueda;
+        seleccion();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -199,13 +204,16 @@ public class consultas2Form extends javax.swing.JFrame {
         modelo.addColumn("Costo");
 
         SimpleDateFormat formatoSalida = new SimpleDateFormat("dd/MM/yyyy");
-        Date fecha = formatoSalida.parse(dato);
 
         try {
             List<Placa> todos = p.getPlacasPorFecha(fecha);
+             if (todos.size() == 0){
+                JOptionPane.showMessageDialog(this, "No se encontraron resultados", "AVISO", JOptionPane.WARNING_MESSAGE);
+                dispose();
+            }
             for (int i = 0; i < todos.size(); i++) {
                 String[] datos = new String[3];
-                datos[0] = "Licencia";
+                datos[0] = "Placa";
                 String fechaRegreso = formatoSalida.format(todos.get(i).getFechaExpedicion().getTime());
                 datos[1] = fechaRegreso;
                 datos[2] = "" + todos.get(i).getCosto();
@@ -228,6 +236,10 @@ public class consultas2Form extends javax.swing.JFrame {
 
         try {
             List<Placa> todos = p.getPlacasPorRFC(dato);
+             if (todos.size() == 0){
+                JOptionPane.showMessageDialog(this, "No se encontraron resultados", "AVISO", JOptionPane.WARNING_MESSAGE);
+                dispose();
+            }
             for (int i = 0; i < todos.size(); i++) {
                 String[] datos = new String[3];
                 datos[0] = "Placa";
@@ -253,6 +265,10 @@ public class consultas2Form extends javax.swing.JFrame {
 
         try {
             List<Placa> todos = p.getPlacasPorNombre(dato);
+             if (todos.size() == 0){
+                JOptionPane.showMessageDialog(this, "No se encontraron resultados", "AVISO", JOptionPane.WARNING_MESSAGE);
+                dispose();
+            }
             for (int i = 0; i < todos.size(); i++) {
                 String[] datos = new String[3];
                 datos[0] = "Placa";
@@ -278,6 +294,10 @@ public class consultas2Form extends javax.swing.JFrame {
 
         try {
             List<Licencia> todos = l.getLicenciasPorRFC(dato);
+             if (todos.size() == 0){
+                JOptionPane.showMessageDialog(this, "No se encontraron resultados", "AVISO", JOptionPane.WARNING_MESSAGE);
+                dispose();
+            }
             for (int i = 0; i < todos.size(); i++) {
                 String[] datos = new String[3];
                 datos[0] = "Licencia";
@@ -303,6 +323,10 @@ public class consultas2Form extends javax.swing.JFrame {
 
         try {
             List<Licencia> todos = l.getLicenciasPorNombre(dato);
+            if (todos.size() == 0){
+                JOptionPane.showMessageDialog(this, "No se encontraron resultados", "AVISO", JOptionPane.WARNING_MESSAGE);
+                dispose();
+            }
             for (int i = 0; i < todos.size(); i++) {
                 String[] datos = new String[3];
                 datos[0] = "Licencia";
@@ -325,9 +349,12 @@ public class consultas2Form extends javax.swing.JFrame {
         modelo.addColumn("Costo");
 
         SimpleDateFormat formatoSalida = new SimpleDateFormat("dd/MM/yyyy");
-        Date fecha = formatoSalida.parse(dato);
         try {
             List<Licencia> todos = l.getLicenciasPorFecha(fecha);
+             if (todos.size() == 0){
+                JOptionPane.showMessageDialog(this, "No se encontraron resultados", "AVISO", JOptionPane.WARNING_MESSAGE);
+                dispose();
+            }
             for (int i = 0; i < todos.size(); i++) {
                 String[] datos = new String[3];
                 datos[0] = "Licencia";
