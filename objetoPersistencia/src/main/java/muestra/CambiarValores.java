@@ -4,18 +4,26 @@
  */
 package muestra;
 
+import daos.AutomovilDAO;
+import daos.PlacaDAO;
+import persistencia.Automovil;
+
 /**
  *
  * @author Diego
  */
-public class Insercion {
+public class CambiarValores {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
-        InsertarPersonas i = new InsertarPersonas();
-        i.insertarPersonas();
+        AutomovilDAO automovil = new AutomovilDAO();
+        PlacaDAO placas = new PlacaDAO();
+        
+        Automovil auto = automovil.obtener("123", "MEGH890123HDFR56");
+        placas.desactivarPlaca(auto);
+        
     }
     
 }

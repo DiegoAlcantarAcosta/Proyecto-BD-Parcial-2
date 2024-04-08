@@ -15,7 +15,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
-import persistencia.Licencia;
 import persistencia.Persona;
 import persistencia.Placa;
 import persistencia.Vehiculo;

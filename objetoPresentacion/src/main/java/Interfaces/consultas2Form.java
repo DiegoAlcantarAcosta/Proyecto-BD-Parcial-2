@@ -6,6 +6,7 @@ package Interfaces;
 
 import daos.LicenciaDAO;
 import daos.PlacaDAO;
+import java.awt.HeadlessException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -207,21 +208,21 @@ public class consultas2Form extends javax.swing.JFrame {
 
         try {
             List<Placa> todos = p.getPlacasPorFecha(fecha);
-             if (todos.size() == 0){
+             if (todos.isEmpty()){
                 JOptionPane.showMessageDialog(this, "No se encontraron resultados", "AVISO", JOptionPane.WARNING_MESSAGE);
                 dispose();
             }
             for (int i = 0; i < todos.size(); i++) {
                 String[] datos = new String[3];
                 datos[0] = "Placa";
-                String fechaRegreso = formatoSalida.format(todos.get(i).getFechaExpedicion().getTime());
-                datos[1] = fechaRegreso;
+                String fechaPrint = formatoSalida.format(todos.get(i).getFechaExpedicion().getTime());
+                datos[1] = fechaPrint;
                 datos[2] = "" + todos.get(i).getCosto();
 
                 modelo.addRow(datos);
             }
             tabla.setModel(modelo);
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
             throw e;
         }
     }
@@ -236,21 +237,21 @@ public class consultas2Form extends javax.swing.JFrame {
 
         try {
             List<Placa> todos = p.getPlacasPorRFC(dato);
-             if (todos.size() == 0){
+             if (todos.isEmpty()){
                 JOptionPane.showMessageDialog(this, "No se encontraron resultados", "AVISO", JOptionPane.WARNING_MESSAGE);
                 dispose();
             }
             for (int i = 0; i < todos.size(); i++) {
                 String[] datos = new String[3];
                 datos[0] = "Placa";
-                String fecha = formato.format(todos.get(i).getFechaExpedicion().getTime());
-                datos[1] = fecha;
+                String fechaPrint = formato.format(todos.get(i).getFechaExpedicion().getTime());
+                datos[1] = fechaPrint;
                 datos[2] = "" + todos.get(i).getCosto();
 
                 modelo.addRow(datos);
             }
             tabla.setModel(modelo);
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
             throw e;
         }
     }
@@ -265,21 +266,21 @@ public class consultas2Form extends javax.swing.JFrame {
 
         try {
             List<Placa> todos = p.getPlacasPorNombre(dato);
-             if (todos.size() == 0){
+             if (todos.isEmpty()){
                 JOptionPane.showMessageDialog(this, "No se encontraron resultados", "AVISO", JOptionPane.WARNING_MESSAGE);
                 dispose();
             }
             for (int i = 0; i < todos.size(); i++) {
                 String[] datos = new String[3];
                 datos[0] = "Placa";
-                String fecha = formato.format(todos.get(i).getFechaExpedicion().getTime());
-                datos[1] = fecha;
+                String fechaPrint = formato.format(todos.get(i).getFechaExpedicion().getTime());
+                datos[1] = fechaPrint;
                 datos[2] = "" + todos.get(i).getCosto();
 
                 modelo.addRow(datos);
             }
             tabla.setModel(modelo);
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
             throw e;
         }
     }
@@ -294,21 +295,21 @@ public class consultas2Form extends javax.swing.JFrame {
 
         try {
             List<Licencia> todos = l.getLicenciasPorRFC(dato);
-             if (todos.size() == 0){
+             if (todos.isEmpty()){
                 JOptionPane.showMessageDialog(this, "No se encontraron resultados", "AVISO", JOptionPane.WARNING_MESSAGE);
                 dispose();
             }
             for (int i = 0; i < todos.size(); i++) {
                 String[] datos = new String[3];
                 datos[0] = "Licencia";
-                String fecha = formato.format(todos.get(i).getFechaExpedicion().getTime());
-                datos[1] = fecha;
+                String fechaPrint = formato.format(todos.get(i).getFechaExpedicion().getTime());
+                datos[1] = fechaPrint;
                 datos[2] = "" + todos.get(i).getCosto();
 
                 modelo.addRow(datos);
             }
             tabla.setModel(modelo);
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
             throw e;
         }
     }
@@ -323,21 +324,21 @@ public class consultas2Form extends javax.swing.JFrame {
 
         try {
             List<Licencia> todos = l.getLicenciasPorNombre(dato);
-            if (todos.size() == 0){
+            if (todos.isEmpty()){
                 JOptionPane.showMessageDialog(this, "No se encontraron resultados", "AVISO", JOptionPane.WARNING_MESSAGE);
                 dispose();
             }
             for (int i = 0; i < todos.size(); i++) {
                 String[] datos = new String[3];
                 datos[0] = "Licencia";
-                String fecha = formato.format(todos.get(i).getFechaExpedicion().getTime());
-                datos[1] = fecha;
+                String fechaPrint = formato.format(todos.get(i).getFechaExpedicion().getTime());
+                datos[1] = fechaPrint;
                 datos[2] = "" + todos.get(i).getCosto();
 
                 modelo.addRow(datos);
             }
             tabla.setModel(modelo);
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
             throw e;
         }
     }
@@ -351,21 +352,21 @@ public class consultas2Form extends javax.swing.JFrame {
         SimpleDateFormat formatoSalida = new SimpleDateFormat("dd/MM/yyyy");
         try {
             List<Licencia> todos = l.getLicenciasPorFecha(fecha);
-             if (todos.size() == 0){
+             if (todos.isEmpty()){
                 JOptionPane.showMessageDialog(this, "No se encontraron resultados", "AVISO", JOptionPane.WARNING_MESSAGE);
                 dispose();
             }
             for (int i = 0; i < todos.size(); i++) {
                 String[] datos = new String[3];
                 datos[0] = "Licencia";
-                String fechaRegreso = formatoSalida.format(todos.get(i).getFechaExpedicion().getTime());
-                datos[1] = fechaRegreso;
+                String fechaPrint = formatoSalida.format(todos.get(i).getFechaExpedicion().getTime());
+                datos[1] = fechaPrint;
                 datos[2] = "" + todos.get(i).getCosto();
 
                 modelo.addRow(datos);
             }
             tabla.setModel(modelo);
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
             throw e;
         }
     }

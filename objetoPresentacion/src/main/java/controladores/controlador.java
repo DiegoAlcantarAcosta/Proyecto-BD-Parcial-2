@@ -20,9 +20,14 @@ import daos.LicenciaDAO;
 import daos.PersonaDAO;
 import daos.PlacaDAO;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import persistencia.Automovil;
 import persistencia.Persona;
+import persistencia.Placa;
 
 /**
  *
@@ -31,7 +36,6 @@ import persistencia.Persona;
 public class controlador {
 
     LicenciaDAO licencias = new LicenciaDAO();
-    AutomovilDAO autos = new AutomovilDAO();
     PlacaDAO placas = new PlacaDAO();
     PersonaDAO personas = new PersonaDAO();
 

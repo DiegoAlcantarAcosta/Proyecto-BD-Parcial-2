@@ -5,6 +5,7 @@
 package Interfaces;
 
 import controladores.controlador;
+import daos.PersonaDAO;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -18,6 +19,7 @@ public class licenciasForm extends javax.swing.JFrame {
 
     controlador c = new controlador();
     TramitarLicenciaBO licencia = new TramitarLicenciaBO();
+    PersonaDAO persona = new PersonaDAO();
 
     /**
      * Creates new form menuForm
@@ -89,6 +91,11 @@ public class licenciasForm extends javax.swing.JFrame {
 
         rfcTextField.setBackground(new java.awt.Color(255, 255, 255));
         rfcTextField.setForeground(new java.awt.Color(0, 0, 0));
+        rfcTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rfcTextFieldActionPerformed(evt);
+            }
+        });
 
         siguienteButton.setBackground(new java.awt.Color(255, 255, 255));
         siguienteButton.setForeground(new java.awt.Color(0, 0, 0));
@@ -174,17 +181,29 @@ public class licenciasForm extends javax.swing.JFrame {
     }//GEN-LAST:event_regresarButtonActionPerformed
 
     private void siguienteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_siguienteButtonActionPerformed
-        if (licencia.isLicenciaActiva(rfcTextField.getText())) {
-            JOptionPane.showMessageDialog(this, "Tiene una licencia ya activa", "AVISO", JOptionPane.WARNING_MESSAGE);
-        } else {
-            try {
-                c.licencia1ALicencia2(rfcTextField.getText());
-            } catch (Exception ex) {
-                Logger.getLogger(licenciasForm.class.getName()).log(Level.WARNING, "No se pudo", ex);
+        if (rfcTextField.getText().isBlank() == false) {
+            if (persona.personaRegistrada(rfcTextField.getText())) {
+                if (licencia.isLicenciaActiva(rfcTextField.getText())) {
+                    JOptionPane.showMessageDialog(this, "Tiene una licencia ya activa", "AVISO", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    try {
+                        c.licencia1ALicencia2(rfcTextField.getText());
+                    } catch (Exception ex) {
+                        Logger.getLogger(licenciasForm.class.getName()).log(Level.WARNING, "No se pudo", ex);
+                    }
+                    dispose();
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontro nadie con ese RFC", "AVISO", JOptionPane.WARNING_MESSAGE);
             }
-            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "No dejar el espacio en blanco", "AVISO", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_siguienteButtonActionPerformed
+
+    private void rfcTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rfcTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rfcTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
