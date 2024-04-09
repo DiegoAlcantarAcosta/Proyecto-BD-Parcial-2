@@ -28,6 +28,9 @@ public class PlacaDAO implements IPlacaDAO {
 
     private IConexion conexion;
 
+    /**
+     * Constructor predeterminado que inicializa la conexión con la base de datos utilizando la implementación predeterminada de {@link IConexion}.
+     */
     public PlacaDAO() {
         conexion = new Conexion();
     }

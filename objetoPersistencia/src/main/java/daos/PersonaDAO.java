@@ -25,6 +25,9 @@ public class PersonaDAO implements IPersonaDAO {
 
     private final IConexion conexion;
 
+    /**
+     * Constructor predeterminado que inicializa la conexión con la base de datos utilizando la implementación predeterminada de {@link IConexion}.
+     */
     public PersonaDAO() {
         conexion = new Conexion();
     }

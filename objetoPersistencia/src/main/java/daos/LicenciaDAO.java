@@ -27,6 +27,9 @@ public class LicenciaDAO implements ILicenciaDAO {
 
     private final IConexion conexion;
 
+    /**
+     * Constructor predeterminado que inicializa la conexión con la base de datos utilizando la implementación predeterminada de {@link IConexion}.
+     */
     public LicenciaDAO() {
         conexion = new Conexion();
     }

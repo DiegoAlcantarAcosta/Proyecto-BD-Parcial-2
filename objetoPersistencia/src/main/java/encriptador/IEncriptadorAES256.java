@@ -10,7 +10,19 @@ package encriptador;
  * @author Diego Alcantar Acosta
  */
 public interface IEncriptadorAES256 {
-    
+     /**
+     * Metodo para encriptar
+     * @param text tecto
+     * @param shift codigo
+     * @return  string
+     */
     public String encriptar(String text, int shift);
+    
+    /**
+  *  metodo para desencriptar
+  * @param encryptedText texto
+  * @param shift clave
+  * @return  String
+  */
     public String desencriptar(String encryptedText, int shift);
 }

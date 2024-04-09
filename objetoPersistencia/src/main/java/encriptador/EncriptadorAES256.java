@@ -10,7 +10,12 @@ package encriptador;
  * @author Diego Alcantar Acosta
  */
 public class EncriptadorAES256 implements IEncriptadorAES256 {
-
+    /**
+     * Metodo para encriptar
+     * @param text tecto
+     * @param shift codigo
+     * @return  string
+     */
     @Override
     public String encriptar(String text, int shift) {
         StringBuilder encryptedText = new StringBuilder();
@@ -38,7 +43,12 @@ public class EncriptadorAES256 implements IEncriptadorAES256 {
         }
         return encryptedText.toString();
     }
-
+ /**
+  *  metodo para desencriptar
+  * @param encryptedText texto
+  * @param shift clave
+  * @return  String
+  */
     @Override
      public String desencriptar(String encryptedText, int shift) {
         return encriptar(encryptedText, -shift);

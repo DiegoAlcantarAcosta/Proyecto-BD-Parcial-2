@@ -23,6 +23,9 @@ public class TramiteDAO implements ITramiteDAO {
 
     private IConexion conexion;
 
+    /**
+     * Constructor predeterminado que inicializa la conexión con la base de datos utilizando la implementación predeterminada de {@link IConexion}.
+     */
     public TramiteDAO(IConexion conexion) {
         this.conexion = new Conexion();
     }

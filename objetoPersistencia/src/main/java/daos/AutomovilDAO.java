@@ -22,10 +22,23 @@ public class AutomovilDAO implements IAutomovilDAO {
 
     private final IConexion conexion;
 
+    /**
+     * Vacio
+     */
     public AutomovilDAO() {
         conexion = new Conexion();
     }
 
+    /**
+     * registra
+     * @param numSerie numero de serie
+     * @param marca marca
+     * @param linea liena
+     * @param color color
+     * @param modelo modelo
+     * @param persona dueño
+     * @return Automovil
+     */
     @Override
     public Automovil registrar(String numSerie, String marca, String linea, String color, int modelo, Persona persona) {
         EntityManager entityManager = conexion.abrir();
@@ -48,6 +61,11 @@ public class AutomovilDAO implements IAutomovilDAO {
         }
     }
 
+    /**
+     * Verifica si existe
+     * @param numSerie numero de serie
+     * @return true o false
+     */
     @Override
     public boolean existeAutomovil(String numSerie) {
         EntityManager entityManager = conexion.abrir();
@@ -70,6 +88,12 @@ public class AutomovilDAO implements IAutomovilDAO {
         }
     }
 
+    /**
+     * devuelve unc carro
+     * @param numSerie numero serie
+     * @param rfc rfc
+     * @return carro
+     */
     @Override
     public Automovil obtener(String numSerie, String rfc) {
         EntityManager entityManager = conexion.abrir();
@@ -98,6 +122,11 @@ public class AutomovilDAO implements IAutomovilDAO {
         }
     }
 
+    /**
+     * devuelve carro por numSerie
+     * @param numSerie numserie
+     * @return carro
+     */
     @Override
     public Automovil obtenerPorNumeroSerie(String numSerie) {
         EntityManager entityManager = conexion.abrir();
@@ -120,6 +149,12 @@ public class AutomovilDAO implements IAutomovilDAO {
         return null;
     }
 
+    /**
+     * devuelve carro por placas
+     * @param claveNumerica placas
+     * @param rfc rfc
+     * @return carro
+     */
     @Override
     public Automovil obtenerPorPlacas(String claveNumerica, String rfc) {
         EntityManager em = conexion.abrir();
